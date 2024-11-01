@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.ctrlca.com</id>
+    <title>Atlas&apos;s blog</title>
+    <updated>2024-11-01T10:00:34.830Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.ctrlca.com"/>
+    <link rel="self" href="https://blog.ctrlca.com/atom.xml"/>
+    <subtitle>有梦就要去追,待会儿醒了，就不容易再睡着了</subtitle>
+    <logo>https://blog.ctrlca.com/images/avatar.png</logo>
+    <icon>https://blog.ctrlca.com/favicon.ico</icon>
+    <rights>All rights reserved 2024, Atlas&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[GitHub开源项目推荐/分享]]></title>
+        <id>https://blog.ctrlca.com/post/github-kai-yuan-xiang-mu-tui-jian-fen-xiang/</id>
+        <link href="https://blog.ctrlca.com/post/github-kai-yuan-xiang-mu-tui-jian-fen-xiang/">
+        </link>
+        <updated>2024-11-01T08:35:03.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="代理软件">代理软件</h2>
+<h3 id="clash">Clash</h3>
+<ul>
+<li><a href="https://github.com/juewuy/ShellCrash">ShellCrash</a><br>
+命令行版的Clash客户端，支持CDN下载/更新内核等</li>
+<li><a href="https://github.com/clash-verge-rev/clash-verge-rev">clash-verge-rev</a><br>
+CLash桌面版， 基于Clash Verge二开，支持Windows, MacOS, Linux</li>
+<li><a href="https://github.com/vernesong/OpenClash">OpenClash</a><br>
+openwrt 版本的Clash</li>
+<li><a href="https://github.com/MetaCubeX/ClashMetaForAndroid">ClashMetaForAndroid</a><br>
+安卓版Clash</li>
+</ul>
+<h3 id="其他协议">其他协议</h3>
+<ul>
+<li><a href="https://github.com/Safe3/firefly">firefly</a><br>
+WireGuard服务端软件</li>
+<li><a href="https://github.com/snail007/proxy_admin_free">proxy_admin_free</a><br>
+高性能全功能的http代理、https代理、socks5代理、内网穿透、内网穿透p2p、内网穿透代理、内网穿透反向代理、内网穿透服务器、Websocket代理、TCP代理、UDP代理、DNS代理、DNS加密代理，代理API认证，全能跨平台代理服务器。</li>
+</ul>
+<h2 id="网盘客户端">网盘客户端</h2>
+<ul>
+<li><a href="https://github.com/AlistGo/alist">Alist</a><br>
+🗂一个支持多存储的文件列表程序<br>
+延申版本：<br>
+<a href="https://github.com/jing332/AListFlutter">AListFlutter</a>:AList 安卓版本<br>
+<a href="https://github.com/Xmarmalade/alisthelper">alisthelper</a>: AList桌面版启动器<br>
+<a href="https://github.com/sbwml/luci-app-alist">luci-app-alist</a>: AList openwrt版<br>
+<a href="https://github.com/DDS-Derek/xiaoya-alist">xiaoya-alist</a>基于Alist的影音自动刮削软件</li>
+<li><a href="https://github.com/dr34m-cn/taosync">taosync</a><br>
+AList v3的自动化同步工具</li>
+</ul>
+<h2 id="服务器服务">服务器服务</h2>
+<ul>
+<li><a href="https://github.com/1Panel-dev/1Panel">1Panel</a><br>
+现代化、开源的 Linux 服务器运维管理面板，功能强大，小白必备</li>
+<li><a href="https://github.com/WisdomSky/Cloudflared-web">Cloudflared-web</a><br>
+Cloudflared内网穿透工具web界面版</li>
+<li><a href="https://github.com/gdy666/lucky">lucky</a> <a href="https://github.com/gdy666/luci-app-lucky">luci-app-lucky</a><br>
+openwrt版的Lucky,动态ddns ，stun内网穿透，反向代理等</li>
+<li><a href="https://github.com/whyour/qinglong">青龙面板</a><br>
+支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台</li>
+</ul>
+<h2 id="工具">工具</h2>
+<ul>
+<li><a href="https://github.com/zbezj/HEU_KMS_Activator">HEU_KMS_Activator</a><br>
+KMS激活工具，懂得都懂</li>
+<li><a href="https://github.com/tiny-craft/tiny-rdm">tiny-rdm</a><br>
+Redis桌面客户端 ，支持Mac、Windows和Linux</li>
+<li><a href="https://github.com/RROrg/rr">rr</a><br>
+黑群晖引导制作工具</li>
+<li><a href="https://github.com/Molunerfinn/PicGo">PicGo</a><br>
+图床工具</li>
+<li><a href="https://github.com/BornToBeRoot/NETworkManager">NETworkManager</a><br>
+超好用的网络工具，只支持win</li>
+<li><a href="https://github.com/Netskao/MacOS-Utils">MacOS-Utils</a><br>
+Netskao大佬的MacOS工具，微信防撤回</li>
+<li><a href="https://github.com/getgridea/gridea">gridea</a><br>
+一个静态博客写作客户端，支持同步到github</li>
+<li><a href="https://github.com/o0HalfLife0o/TVBoxOSC">TVBox</a><br>
+开源电视软件，需要配合源使用，功能十分强大</li>
+</ul>
+<h2 id="规则配置脚本">规则/配置/脚本</h2>
+<ul>
+<li><a href="https://github.com/Sitoi/dailycheckin">dailycheckin</a><br>
+基于「Docker」/「青龙面板」的每日签到脚本（支持多账号）签到列表: ｜爱奇艺｜全民K歌｜有道云   笔记｜百度贴吧｜Bilibili｜V2EX｜AcFun｜什么值得买｜阿里云盘｜i茅台申购｜小米运动｜百度搜   索资源平台｜恩山论坛｜奥拉星｜</li>
+<li><a href="https://github.com/ddgksf2013/ddgksf2013">墨鱼QX规则</a><br>
+QuantumultX的基础配置，直接导入使用即可</li>
+<li><a href="https://github.com/217heidai/adblockfilters">adblockfilters</a><br>
+适用于AdGuard的去广告合并规则</li>
+</ul>
+<h2 id="阅读">阅读</h2>
+<ul>
+<li><a href="https://github.com/gedoor/legado">legado</a><br>
+阅读3开源阅读器</li>
+<li><a href="https://github.com/hectorqin/reader">reader</a><br>
+阅读3服务器版</li>
+<li><a href="https://github.com/Modificator/E-Ink-Launcher">E-Ink-Launcher</a><br>
+墨水屏桌面软件，非常小巧</li>
+</ul>
+<h2 id="ios安卓玩机">IOS/安卓玩机</h2>
+<ul>
+<li><a href="https://github.com/opa334/TrollStore">TrollStore</a><br>
+大名鼎鼎的巨魔商店</li>
+<li><a href="https://github.com/Lessica/TrollSpeed">TrollSpeed</a><br>
+巨魔网速插件</li>
+<li><a href="https://github.com/Lessica/TrollFools">TrollFools</a><br>
+IOS巨魔商店插件，可以在不修改app的情况下注入插件</li>
+<li><a href="https://github.com/scavin/ws-scrcpy-docker">ws-scrcpy Docker版</a><br>
+网页adb连接控制手机</li>
+<li><a href="https://github.com/Genymobile/scrcpy">scrcpy</a><br>
+PC控制安卓设备</li>
+</ul>
+<h2 id="系统">系统</h2>
+<ul>
+<li><a href="https://github.com/ophub/amlogic-s9xxx-armbian">amlogic-s9xxx-armbian</a><br>
+大佬编译的armbian仓库，arm玩家的必备项目</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker安装Openwrt 配置旁路由]]></title>
+        <id>https://blog.ctrlca.com/post/docker-an-zhuang-openwrt-pei-zhi-pang-lu-you/</id>
+        <link href="https://blog.ctrlca.com/post/docker-an-zhuang-openwrt-pei-zhi-pang-lu-you/">
+        </link>
+        <updated>2024-11-01T00:46:21.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="介绍一个网站">介绍一个网站</h2>
+<p><a href="https://openwrt.ai">这是一个可以自编译openwrt的网站</a>，一会需要下载镜像包<br>
+并且，非付费的用户可以每天有一个免费的编译机会，大佬还自建了软件源....简直太香了（除了慢点）</p>
+<h2 id="1-打开网卡混杂模式">1. 打开网卡混杂模式</h2>
+<ul>
+<li>这里只介绍Ubuntu、debian 以及armbian系统的命令，其他系统自行百度</li>
+</ul>
+<pre><code>ip link set eth0 promisc on
+</code></pre>
+<p>eth0 指的是网卡名称</p>
+<h2 id="2-创建一个macvlan网络">2. 创建一个macvlan网络</h2>
+<ul>
+<li>创建macvlan网络,是为了实现独立mac地址，在网络层与其他物理机或者容器实现互联。</li>
+</ul>
+<pre><code># 查看这个网卡的网络信息
+ip addr show eth0
+# 假设eth0的IP是10.0.0.1/24，子网是10.0.0.0/24，网关为10.0.0.1 。那我们的命令为
+docker network create -d macvlan \
+  --subnet=10.0.0.0/24 \
+  --gateway=10.0.0.1 \
+  -o parent=eth0 \
+  my-macvlan-net
+</code></pre>
+<p>这里，--subnet是macvlan网络的子网，--gateway是网关（通常是子网内的第一个可用地址），-o parent=eth0指定了物理接口。</p>
+<h2 id="3下载-docker镜像包">3.下载 docker镜像包</h2>
+<p>打开上面这个网站<br>
+<img src="https://tp.ctrlca.com/img/20241101094016.png" alt="" loading="lazy"><br>
+鼠标滚轮把页面划到最下面，下载这个镜像包，到你想部署Openwrt的这台设备的上。<br>
+wget也好，下载上传了也好，随各位心意。<br>
+<img src="https://tp.ctrlca.com/img/20241101094133.png" alt="" loading="lazy"><br>
+如果你是arm设备或者是32位设备，请在固件搜索区域搜索<br>
+<img src="https://tp.ctrlca.com/img/20241101094352.png" alt="" loading="lazy"></p>
+<h2 id="4-导入镜像到docker中">4. 导入镜像到docker中</h2>
+<pre><code>docker import 下载的镜像包名称 docker中显示的镜像名称
+# 举例
+docker import openwrt-x86-64-generic-rootfs.tar.gz kiddin9_openwrt
+</code></pre>
+<h2 id="5-创建容器">5. 创建容器</h2>
+<pre><code>docker run –restart always –name openwrt kiddin9_openwrt -d –network openwrt –privileged /sbin/init
+</code></pre>
+<p>自己手动创建或者自己改命令</p>
+<h2 id="6-修改openwrt-ip">6. 修改openwrt IP</h2>
+<pre><code># 进入容器
+docker exec -it openwrt sh
+
+# 修改openwrt后台登录IP 
+vi /etc/config/network
+
+# 重启网络
+/etc/init.d/network restart
+# 或者退出容器内部环境，在宿主机环境执行重启容器命令
+docker container restart openwrt
+</code></pre>
+<p>直接网页输入IP，页面登录</p>
+<pre><code>#账号密码
+root/root
+</code></pre>
+<h2 id="7-配置位旁路由">7. 配置位旁路由</h2>
+<p><img src="https://tp.ctrlca.com/img/20241101101808.png" alt="" loading="lazy"><br>
+<img src="https://tp.ctrlca.com/img/20241101102023.png" alt="" loading="lazy"></p>
+<h2 id="8-注意事项">8. 注意事项</h2>
+<ul>
+<li>首页这个联网状态别管他，软件包界面加载慢也别管他，那状态不对。<br>
+<img src="https://tp.ctrlca.com/img/20241101102054.png" alt="" loading="lazy"></li>
+<li>容器没有办法真正的重启，别问同为啥自己查</li>
+<li>尽量少装点插件，docker的性能不是很好，我只装了openclash用的，其余没装</li>
+</ul>
+<h2 id="一些废话">一些废话</h2>
+<p>首先说一下我为啥在dokcer中部署openwrt，而不是在openwrt中使用docker</p>
+<ul>
+<li>设备型号：sw799，配置: CPU RK3399 4+16<br>
+一块捡垃圾来的微信支付设备主板。没有太多的适配固件不多，最常用的还是大佬适配的Armbian固件，所以使用了Armbian固件。</li>
+<li>需求：我需要AdguardHome的DNS服务器 和一个openwrt做旁路由<br>
+问题分析：我有一个CPU型号为N6000的ikuai的软路由，以及一个性能还算是凑合的飞牛nas。一些基础的都已经满足了，我需要的是一个稳定的，性能还可以的，并且功耗小的设备。<br>
+Q：为什么不使用ikuai虚拟机部署？<br>
+A：我只想我的主路由保持稳定，而不是all in boom<br>
+Q：为什么不在飞牛里部署？<br>
+A：需求不一样，飞牛跑的都是业务类的服务，而像dns解析，旁路由我想给他单独出来</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[iKuai虚拟机安装iStoreOS旁路由]]></title>
+        <id>https://blog.ctrlca.com/post/ikuai-xu-ni-ji-an-zhuang-istoreos-pang-lu-you/</id>
+        <link href="https://blog.ctrlca.com/post/ikuai-xu-ni-ji-an-zhuang-istoreos-pang-lu-you/">
+        </link>
+        <updated>2024-10-25T05:15:33.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-新增虚拟机">1. 新增虚拟机</h2>
+<p>爱快后台-高级应用-虚拟机-添加<br>
+<img src="https://tp.ctrlca.com/img/20241025131645.png" alt="" loading="lazy"><br>
+这里着重讲讲设备管理<br>
+新增一个引导<br>
+<img src="https://tp.ctrlca.com/img/20241025131835.png" alt="" loading="lazy"></p>
+<h3 id="11-注意事项">1.1 注意事项：</h3>
+<pre><code>1. 再新增一个磁盘，如果不添加没磁盘用嗷。
+2. 网卡随意，不要开启efi，直接保存启动
+3. 没有新下载的安装包要解压解压解压！！！！！！！！！！！！！！！！
+</code></pre>
+<p>然后打开vnc，等待命令跑完以后回车<br>
+<img src="https://tp.ctrlca.com/img/20241025131955.png" alt="" loading="lazy"></p>
+<h2 id="2-输入命令修改lanip进入后台">2. 输入命令修改lanip进入后台</h2>
+<p>输入：</p>
+<pre><code>quickstart
+</code></pre>
+<p>我们选change lan ip</p>
+<p><img src="https://tp.ctrlca.com/img/20241025132135.png" alt="" loading="lazy"><br>
+输入ip和掩码就可</p>
+<h3 id="3-其他">3. 其他</h3>
+<p>iStoreOS初始用户名为：root 密码为：password</p>
+<p>也可参考这篇文章<br>
+https://www.bilibili.com/read/cv22717917/</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[安卓电视安装tvbox看影视直播tv]]></title>
+        <id>https://blog.ctrlca.com/post/an-zhuo-dian-shi-an-zhuang-tvbox-kan-ying-shi-zhi-bo-tv/</id>
+        <link href="https://blog.ctrlca.com/post/an-zhuo-dian-shi-an-zhuang-tvbox-kan-ying-shi-zhi-bo-tv/">
+        </link>
+        <updated>2024-10-23T09:40:26.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-项目地址">1. 项目地址</h2>
+<pre><code>https://github.com/o0HalfLife0o/TVBoxOSC
+</code></pre>
+<p>四个版本自己试一下哪个能安装</p>
+<h2 id="2-配置">2. 配置</h2>
+<p>打开设置<br>
+<img src="https://tp.ctrlca.com/img/20241023174024.png" alt="" loading="lazy"><br>
+配置项目地址，使用手机扫码输入第一个源就点确定就行<br>
+这里我们使用放牛娃的源</p>
+<pre><code>http://tvbox.xn--4kq62z5rby2qupq9ub.xyz/
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://tp.ctrlca.com/img/20241023174226.png" alt="" loading="lazy"></figure>
+<h2 id="3-答疑">3. 答疑</h2>
+<h3 id="31-获取储存权限失败怎么办">3.1 获取储存权限失败怎么办</h3>
+<p>别管什么储存权限乱七八糟权限的，直接点确定！！！！！点完返回，会加载数据</p>
+<h3 id="32-一直在直播换台怎么办">3.2 一直在直播换台怎么办</h3>
+<p>进入首页以后左上方源信息点击会弹一个清除缓存<br>
+如果跳到了直播界面，疯狂换台一定要狂点返回，或者按菜单键退出直播，然后左上角清除缓存<br>
+之后再进入直播就正常了，点击确定/ok按键 查看直播信息</p>
+<h3 id="33-tvbox如何配置网盘">3.3 tvbox如何配置网盘</h3>
+<p>然后剩下的就是移动光标到首页，然后确定切换源找到网盘扫码界面，扫码登录网盘然后退出app重新进入就可以愉快的看电视了</p>
+<h3 id="34-tvbox怎么筛选">3.4 tvbox怎么筛选</h3>
+<ol>
+<li>大分类筛选：举例光标移动到电视剧再点确定会出现小分类（华语啊动漫啊等等）点击确定之后再点返回就可以筛选了</li>
+<li>搜索：点击搜索调出二维码直接手机扫码搜索，方便的一批</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用docker部署萤火虫快速部署WireGurad Server端]]></title>
+        <id>https://blog.ctrlca.com/post/shi-yong-docker-bu-shu-ying-huo-chong-kuai-su-bu-shu-wiregurad-server-duan/</id>
+        <link href="https://blog.ctrlca.com/post/shi-yong-docker-bu-shu-ying-huo-chong-kuai-su-bu-shu-wiregurad-server-duan/">
+        </link>
+        <updated>2024-10-17T07:58:40.000Z</updated>
+        <content type="html"><![CDATA[<p>使用WireGurad快速回家，访问家里的网络</p>
+<h2 id="1-docker部署">1. docker部署</h2>
+<p>项目地址</p>
+<pre><code>https://github.com/Safe3/firefly
+</code></pre>
+<p>docker-compose.yml</p>
+<pre><code>version: '3'
+services:
+  firefly:
+    image: &quot;uusec/firefly:latest&quot;
+    container_name: firefly-server
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    volumes:
+      - /lib/modules:/lib/modules
+      - /etc/firefly:/firefly/conf
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    restart: unless-stopped
+    environment:
+      #- TZ=Asia/Shanghai
+      #- FIREFLY_DEVICE=eth0
+      - FIREFLY_PASSWORD=firefly
+      #- FIREFLY_AUTO_SSL=false
+      #- FIREFLY_PORT=50121
+  
+</code></pre>
+<p>要注意的是network要改成除了host的任意一个网络<br>
+原因是因为wireguard只支持udp在openwrt和其他nas的默认情况下是tcp协议<br>
+这里我们要改成子网，并且把端口映射到宿主机协议改为udp<br>
+<img src="https://tp.ctrlca.com/img/20241017160430.png" alt="" loading="lazy"></p>
+<h2 id="修改配置文件">修改配置文件</h2>
+<p>部署完成以后修改 /etc/firefly 目录下的config.json配置文件<br>
+<img src="https://tp.ctrlca.com/img/20241017160849.png" alt="" loading="lazy"><br>
+① 你ddns出去的域名，注意如果你修改了端口号记得修改<br>
+② dns服务器，如果你本地搭建了dns服务器，你想使用的话那你自己改，这里我用了阿里的dns服务器<br>
+ok接下来启动firefly吧</p>
+<h5 id="注意别踩坑">注意别踩坑：</h5>
+<p>wg_device这个字段，如果你有两个以上的网卡，请确认你的流量出口是哪个网卡自行修改<br>
+服务端配置详解：</p>
+<pre><code>{
+ &quot;version&quot;: 4.3,              // 萤火虫当前版本
+ &quot;host&quot;: &quot;7.7.7.7&quot;,           // 萤火虫web管理后台ip或域名，默认为自动获取的公网ip
+ &quot;port&quot;: 50121,               // 萤火虫web管理后台端口
+ &quot;auto_ssl&quot;: false,           // 萤火虫web是否启用自动申请免费SSL证书并续期，启用前将web端口改为443并配置host为域名
+ &quot;password&quot;: &quot;firefly&quot;,       // 萤火虫web管理后台登录认证密码
+ &quot;lang&quot;: &quot;en&quot;,                // 萤火虫web管理后台多语言支持，中文请将en改为cn
+ &quot;ui_traffic_stats&quot;: true,    // 萤火虫web管理后台是否开启流量图特效
+ &quot;ui_chart_type&quot;: 2,          // 萤火虫web管理后台流量特效图类型
+ &quot;log_level&quot;: &quot;error&quot;,        // 萤火虫服务端日志记录等级
+ &quot;wg_private_key&quot;: &quot;YBw5KAo1vM2mz35GLhZB01ZNYWJYWdGZNQT1MebuCHk=&quot;,  // 萤火虫服务端 WireGuard 私钥
+ &quot;wg_device&quot;: &quot;eth0&quot;,                   // 萤火虫服务端 WireGuard 出入流量网卡名称
+ &quot;wg_port&quot;: 50120,                      // 萤火虫服务端 WireGuard UDP端口
+ &quot;wg_mtu&quot;: 1280,                        // 萤火虫服务端 WireGuard MTU值
+ &quot;wg_persistent_keepalive&quot;: 25,         // 萤火虫客户端存活包发送间隔时间
+ &quot;wg_address&quot;: &quot;198.18.0.1/15&quot;,         // 萤火虫客户端虚拟ip网段范围
+ &quot;wg_dns&quot;: &quot;1.1.1.1&quot;,                   // 萤火虫客户端dns配置
+ &quot;wg_allowed_ips&quot;: &quot;0.0.0.0/0, ::/0&quot;,   // 萤火虫客户端要转发流量到服务端的ip地址范围，默认所有流量
+ &quot;wg_proxy_address&quot;: &quot;:50122&quot;           // 萤火虫TCP协议中转监听地址，可防止UDP QoS限流
+}
+</code></pre>
+<h2 id="3一点点小思路">3.一点点小思路</h2>
+<p>使用ShellCrash劫持局域网流量实现WireGuard 使用坤厂来学术查询<br>
+看图吧看图<br>
+<img src="https://tp.ctrlca.com/img/20241017164421.png" alt="" loading="lazy"><br>
+<img src="https://tp.ctrlca.com/img/20241017164448.png" alt="" loading="lazy"><br>
+<img src="https://tp.ctrlca.com/img/20241017164528.png" alt="" loading="lazy"><br>
+这样，你别的设备已经正常，而萤火虫可以学术查询<br>
+shellcrash 项目地址：</p>
+<pre><code>https://github.com/juewuy/ShellCrash
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[移动光猫改桥接模式]]></title>
+        <id>https://blog.ctrlca.com/post/yi-dong-guang-mao-gai-qiao-jie-mo-shi/</id>
+        <link href="https://blog.ctrlca.com/post/yi-dong-guang-mao-gai-qiao-jie-mo-shi/">
+        </link>
+        <updated>2024-10-17T05:25:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-为啥桥接啊我也不知道我就想改桥接">1. 为啥桥接啊，我也不知道，我就想改桥接</h2>
+<p>改桥接以后可以映射端口使用STUN内网穿透，短暂获取随机外网端口</p>
+<pre><code># 用户名
+CMCCAdmin
+# 密码自己跟移动贸易一下
+</code></pre>
+<h2 id="2-获取光口的vlanid修改配置">2. 获取光口的vlanID，修改配置</h2>
+<h3 id="21-记录下vid">2.1 记录下VID</h3>
+<p><img src="https://tp.ctrlca.com/img/20241017133116.png" alt="" loading="lazy"><br>
+原理： 可以看到前面连接名称是internet（网络）然后VID*** ，因为移动没有公网ip是内网的情况下给用户们划分了vlan 每个vlan代表不同的业务<br>
+记住IP协议版本、端口绑定、VLAN模式、VLAN ID、802.1p、MTU等参数设置</p>
+<h3 id="22-改桥接模式">2.2 改桥接模式</h3>
+<p>这样子就行了 bridge是桥接模式<br>
+<img src="https://tp.ctrlca.com/img/20241017133917.png" alt="" loading="lazy"><br>
+最后删除原来Internet配置，重启光猫设备，然后使用路由进行拨号</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[iKuai使用心得]]></title>
+        <id>https://blog.ctrlca.com/post/ikuai-shi-yong-xin-de/</id>
+        <link href="https://blog.ctrlca.com/post/ikuai-shi-yong-xin-de/">
+        </link>
+        <updated>2024-10-12T01:17:30.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-一定要关闭健康检查">1. 一定要关闭健康检查</h2>
+<p><img src="https://tp.ctrlca.com/img/20241012091812.png" alt="" loading="lazy"><br>
+此功能会导致频繁重启，所以一定要关掉</p>
+<h2 id="2-兼容性不好">2. 兼容性不好</h2>
+<p>兼容性不是很好所以要选择大家常用的设备，而且你是免费版，客服不会给你解答的很好会让你自行排查设备的兼容性，对于小白来说不是很友好。</p>
+<h2 id="3-关于设备重启的问题">3. 关于设备重启的问题</h2>
+<p>健康检查只是占一部分责任，还有一部分在cpu睿频，这个不建议开因为不稳定<br>
+以我的设备举例 倍控的n6000被动散热设备开cpu睿频 50度不开cpu睿频 最高40度，差距还是很大的</p>
+<h2 id="4-性能过剩和性能损耗的问题">4. 性能过剩和性能损耗的问题</h2>
+<p>性能过剩： 假如说你装了个爱快，也最多最多就使用一下他的docker，因为真的没有必要跑个虚拟机，除非偶尔应急用<br>
+ikuai的docker是真的难用 没有docker run 也没有docker-compose，而且创建后不能修改只允许调整一下内存和cpu<br>
+为啥不适用爱快的虚拟机呢，第一是安装麻烦，第二就是性能是真的差，ikuai下装istoreos点一下等半天时不时的卡一下，损耗非常大</p>
+<h2 id="5-观察ing">5.  观察ing...</h2>
+<p>2024年10月17日 踩坑ing<br>
+今天发现如果有多个wan其中一条掉线，另一条线路检测也会失败，不知道是设备问题还是爱快本身的bug<br>
+继续观察ing...<br>
+2024年10月18日<br>
+早<br>
+<img src="https://tp.ctrlca.com/img/20241018090717.png" alt="" loading="lazy"><br>
+似乎自从把线路检测的网址从百度更改为阿里云以后一切都好了。并没有任何问题</p>
+<p>2024年10月23日<br>
+一切正常，上次手动重启之后稳定了三天了，似乎没什么问题了<br>
+由此结论，爱快网络不稳定与设备ping地址有关</p>
+<p>2024年10月29日<br>
+又发现一个问题docker 和虚拟机 会导致爱快无限制重播，关掉以后稳定运行。<br>
+结论： 尽量不要运行虚拟化的东西</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Z-Library介绍以及利用青龙实现自动同步书籍]]></title>
+        <id>https://blog.ctrlca.com/post/z-library-jie-shao-yi-ji-li-yong-qing-long-shi-xian-zi-dong-tong-bu-shu-ji/</id>
+        <link href="https://blog.ctrlca.com/post/z-library-jie-shao-yi-ji-li-yong-qing-long-shi-xian-zi-dong-tong-bu-shu-ji/">
+        </link>
+        <updated>2024-10-11T01:41:22.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-z-library介绍">1. Z-Library介绍</h2>
+<p>Z-Library是一个在线数字图书馆，完全免费不收取费用，不过可以赞助<br>
+赞助可以获得高级账户，不过只有三十天<br>
+其实就是开会员，详细的自己看吧...<br>
+<img src="https://tp.ctrlca.com/img/20241011095146.png" alt="" loading="lazy"></p>
+<h2 id="2-如何白嫖下载次数呢">2. 如何白嫖下载次数呢</h2>
+<p>按照正常需求，10次下载次数根本用不完，但是！！但是！！我就是想都下载下来存起来（nas闲着也是闲着没事让他干点活）所以我的次数用超了,那如何解决这个问题：<br>
+首先，来分析一下Z-Library的官网一共有6中下载方式：</p>
+<ol>
+<li>直接下载: 下载速度慢</li>
+<li>发送到Google网盘： 没科技别想</li>
+<li>发送到tg： 这是没&quot;科技&quot;能想的嘛？</li>
+<li>发送到kindle ： 都2024年了</li>
+<li>发送到另一种电子阅读器：没用过，我也不知道咋用</li>
+<li>最后一种发送到邮箱</li>
+</ol>
+<p>现在看起来直接发送到电子阅读器里无疑是最方便的，但是嘛我都没有所以我选择发到邮箱<br>
+发送到邮箱以后存到nas的问题又令我头疼了<br>
+一开始我的方案是：<br>
+Z-Library =&gt;邮箱=&gt; 转发到谷歌邮箱 =&gt;自动化工具自动转存到GoogleDrive =&gt;GoogleDrive挂载到Alist（起飞了）=&gt;再通过Alist同步工具同步到阿里云盘=&gt;通过Alist挂载到文件管理里下载<br>
+是不是很麻烦！！但是我实现了<br>
+先说下我为啥不直接保存到GoogleDrive 因为我有的时候用安卓App，他只有发送到邮箱这一个选项</p>
+<figure data-type="image" tabindex="1"><img src="https://tp.ctrlca.com/img/20241011095657.png" alt="" loading="lazy"></figure>
+<p>那怎么解决十次下载这个问题呢： 注册多个邮箱配置邮箱自动转发到一个邮箱，然后每次收到邮件以后就转发到这个收数据的邮箱，如果一个邮箱次数使用完以后接着换账户就ok了</p>
+<h2 id="3-如何自动下载邮箱附件呢这里我们用到了青龙">3. 如何自动下载邮箱附件呢，这里我们用到了青龙</h2>
+<p>大家都知道青龙可以跑京豆对吧，各种签到这签到那签到的，我们就使用青龙定时任务获取邮件进行同步<br>
+新建一个.py后缀的文件</p>
+<pre><code>from imbox import Imbox
+import datetime
+from urllib.parse import unquote
+
+
+# 连接到你的邮箱服务器（请替换为你的邮箱服务器信息）
+with Imbox('imap.xxx.com',
+           username='xxx@xxx.com',
+           password = 'xxxxx',
+           ssl=True) as imbox:
+
+    # 搜索包含'Z-Library主题的邮件 注意是包含！不是 等于
+    filtered_messages = imbox.messages(subject='Z-Library')
+
+    for uid, message in filtered_messages:
+        print(f&quot;邮件ID: {uid}&quot;)
+        print(f&quot;邮件主题: {message.subject}&quot;)
+        # 下载所有附件
+        for attachment in message.attachments:
+            filename = attachment.get('filename')
+            if filename[0:5] == 'utf-8' :
+                # 解码当前文件名称
+                filename = unquote(filename)
+                # 去除utf-8字符
+                filename = filename[7:len(filename)]
+            #打印当前文件名称        
+            print(datetime.datetime.now() ,&quot;获取到附件：&quot;, filename)
+            # 文件保存路径
+            file_path = f&quot;/ql/raidbooks/{filename}&quot;
+            
+            with open(file_path, &quot;wb&quot;) as fp:
+                # decode_header()         
+                # fileInfo = 
+                fp.write(attachment.get('content').read())
+                # 删除邮件
+                imbox.delete(uid)
+            print(f&quot;下载附件到: {file_path}&quot;)
+    # 断开
+   # imbox.logout()
+</code></pre>
+<p>注意： 如果你使用docker部署青龙，请给青龙挂载一个本地文件夹方便他上传<br>
+docker的青龙路径，请ssh下cd到这个文件夹pwd一下</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[记一次STUN内网穿透并"绑定域名"]]></title>
+        <id>https://blog.ctrlca.com/post/ji-yi-ci-stun-nei-wang-chuan-tou-bing-bang-ding-yu-ming/</id>
+        <link href="https://blog.ctrlca.com/post/ji-yi-ci-stun-nei-wang-chuan-tou-bing-bang-ding-yu-ming/">
+        </link>
+        <updated>2024-10-09T05:05:24.000Z</updated>
+        <content type="html"><![CDATA[<p>警告⚠： 本文需要一定的知识储备来处理过程中的异常信息 ，如果你没有那请你自己按照我的步骤一点一点来<br>
+啥原理自行百度，我这里只讲以下如何使用</p>
+<h2 id="1-工具">1. 工具</h2>
+<p><a href="https://lucky666.cn/">Lucky</a> :<br>
+<img src="https://tp.ctrlca.com/img/20241009111517.png" alt="" loading="lazy"><br>
+用于STUN内网穿透<br>
+<a href="cloudflare.com">cloudflare</a>:<br>
+<img src="https://tp.ctrlca.com/img/20241009111537.png" alt="" loading="lazy"><br>
+用于绑定域名重定向</p>
+<h2 id="2-配置stun内网穿透">2. 配置STUN内网穿透</h2>
+<h3 id="21-设置内网穿透">2.1 设置内网穿透</h3>
+<p>咋安装不解释了，官网有<br>
+<img src="https://tp.ctrlca.com/img/20241009111810.png" alt="" loading="lazy"><br>
+如上图所示新增一个stun内网穿透，啥原理自行百度，我这里只讲以下如何使用<br>
+穿透通道本地端口: 建议还是大于10240<br>
+目的地址，目的端口：简单说就是你要映射到外网的服务ip+端口号比如我要映射alist 如图所示，也就是源地址源端口</p>
+<h3 id="22-端口映射到你的外网">2.2 端口映射到你的外网</h3>
+<p>这里建议手动映射哈，我这里是爱快，别的路由器请看路由器官方文档来配置，openwrt同理<br>
+<img src="https://tp.ctrlca.com/img/20241009131518.png" alt="" loading="lazy"></p>
+<h2 id="3-配置cloudflare来进行重定向">3.  配置cloudflare来进行重定向</h2>
+<h3 id="31-添加dns记录">3.1 添加dns记录</h3>
+<p>首先登录，然后点进去，根据图操作<br>
+<img src="https://tp.ctrlca.com/img/20241009132232.png" alt="" loading="lazy"><br>
+dns=&gt;记录<br>
+<img src="https://tp.ctrlca.com/img/20241009132523.png" alt="" loading="lazy"><br>
+点击新增一条，假如说我要映射alist，我给二级域名就叫alist 那 名称就填写alist<br>
+IPv4 地址随便填因为我们只需要它跳转<br>
+<img src="https://tp.ctrlca.com/img/20241009132712.png" alt="" loading="lazy"><br>
+添加好了就是上边画框的样子，注意要开代理要开代理要开代理</p>
+<h3 id="32-配置307重定向规则">3.2 配置307重定向规则</h3>
+<p>规则=》 重定向规则=》 创建规则<br>
+<img src="https://tp.ctrlca.com/img/20241009133221.png" alt="" loading="lazy"><br>
+下拉选择自定义</p>
+<pre><code># 表达式
+concat(&quot;http://ip+port&quot;, http.request.uri.path)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://tp.ctrlca.com/img/20241009133735.png" alt="" loading="lazy"></figure>
+<h3 id="33-获取-cloudflare-请求参数">3.3 获取 cloudflare 请求参数</h3>
+<p>本操作主要是为了通过lucky自动调接口更新cloudflare重定向的方法</p>
+<p>点击保存，然后再点编辑按 F12 或者鼠标右键检查 打开控制台<br>
+选择网络或者network<br>
+<img src="https://tp.ctrlca.com/img/20241009134000.png" alt="" loading="lazy"><br>
+然后再点击保存会出现一长串字符串，点击<br>
+<img src="https://tp.ctrlca.com/img/20241009134050.png" alt="" loading="lazy"><br>
+复制请求网址这个url<br>
+<img src="https://tp.ctrlca.com/img/20241009134144.png" alt="" loading="lazy"></p>
+<pre><code># 这网址的url格式为
+https://dash.cloudflare.com/api/v4/zones/区域id/rulesets/规则集id/rules/规则id  
+# 我们要转换为
+https://api.cloudflare.com/client/v4/zones/区域id/rulesets/规则集id/rules/规则id 
+</code></pre>
+<p>也就是说我们从把v4前面的连接换成 https://api.cloudflare.com/client/ 就可以了</p>
+<pre><code>https://api.cloudflare.com/client/
+</code></pre>
+<p>以上是获取了我们请求的url，我们还需要请求参数<br>
+<img src="https://tp.ctrlca.com/img/20241009134911.png" alt="" loading="lazy"><br>
+复制出来然后删除 version  和 last_updated<br>
+把 target_url 下的参数名称更新为 expression<br>
+格式：</p>
+<pre><code>{
+    &quot;action&quot;: &quot;redirect&quot;,
+    &quot;action_parameters&quot;: {
+        &quot;from_value&quot;: {
+            &quot;preserve_query_string&quot;: true,
+            &quot;status_code&quot;: 307,
+            &quot;target_url&quot;: {
+                &quot;expression&quot;: &quot;concat(\&quot;http://#{ipAddr}\&quot;, http.request.uri.path)&quot;
+            }
+        }
+    },
+    &quot;description&quot;: &quot;alist（这是是名称，别照着我的改）&quot;,
+    &quot;enabled&quot;: true,
+    &quot;expression&quot;: &quot;(http.host eq \&quot;atlas.xxx.com\&quot;)&quot;,
+    &quot;id&quot;: &quot;xxxxxxxxxxxxxxxxxxxxx&quot;,
+    &quot;ref&quot;: &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;
+}
+</code></pre>
+<p>拷贝出来上边示例数据改改id ref 其他和示例保持一样就ok<br>
+万事俱备只欠东风，接下来我们需要一个Authorization（密匙，调用Api必备参数）</p>
+<p>点击我的资料<br>
+<img src="https://tp.ctrlca.com/img/20241009135242.png" alt="" loading="lazy"><br>
+点击API令牌 =》创建 =》 创建自定义令牌<br>
+<img src="https://tp.ctrlca.com/img/20241009135327.png" alt="" loading="lazy"></p>
+<p>画框的填下，剩下的默认<br>
+<img src="https://tp.ctrlca.com/img/20241009135449.png" alt="" loading="lazy"><br>
+这样就得到了Authorization注意保存，画框的参数 双引号里边的参数拷贝出来<br>
+<img src="https://tp.ctrlca.com/img/20241009135623.png" alt="" loading="lazy"></p>
+<p>这样我们得到了三个数据：</p>
+<ol>
+<li>请求地址url</li>
+<li>请求头 Authorization 和 Content-Type</li>
+<li>请求的json数据</li>
+</ol>
+<h2 id="4-配置-webhook-更新重定向">4. 配置 WebHook 更新重定向</h2>
+<p>点击编辑<br>
+<img src="https://tp.ctrlca.com/img/20241009140249.png" alt="" loading="lazy"><br>
+然后按照上边得到的三个数据按照123填写入对应的框里<br>
+<img src="https://tp.ctrlca.com/img/20241009140526.png" alt="" loading="lazy"><br>
+然后点击手动测试，最后 接口调用成功包含的字符串 填上</p>
+<pre><code>&quot;success&quot;: true
+</code></pre>
+<p><img src="https://tp.ctrlca.com/img/20241009140654.png" alt="" loading="lazy"><br>
+ok完事</p>
+<p>参考文章：https://zhuanlan.zhihu.com/p/668448423</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Fnos的一些使用指南]]></title>
+        <id>https://blog.ctrlca.com/post/fnos-de-yi-xie-shi-yong-zhi-nan/</id>
+        <link href="https://blog.ctrlca.com/post/fnos-de-yi-xie-shi-yong-zhi-nan/">
+        </link>
+        <updated>2024-10-09T00:51:23.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-连接wifi">1. 连接WiFi</h2>
+<p>根据官方文档可以看到命令为</p>
+<p>搜索wifi</p>
+<pre><code>nmcli device wifi list
+</code></pre>
+<p>连接WiFi</p>
+<pre><code>nmcli device wifi connect &quot;Wi-Fi名称&quot; password &quot;密码&quot;
+</code></pre>
+<p><img src="https://tp.ctrlca.com/img/20241009085314.png" alt="" loading="lazy"><br>
+但是这是错的，会告诉你多余了几个参数，正确的使用方式：</p>
+<pre><code>nmcli device wifi connect 'Wi-Fi名称' password '密码'
+</code></pre>
+<p>断开 nmcli device wifi disconnect wifiname(无线网卡名称)</p>
+]]></content>
+    </entry>
+</feed>
