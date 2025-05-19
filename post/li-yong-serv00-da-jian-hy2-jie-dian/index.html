@@ -1,0 +1,239 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>利用serv00搭建hy2节点 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="利用serv00搭建hy2节点 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 注册serv00
+1.1 打开官网
+serv00.com
+
+
+1.2 点击注册
+
+填写信息：如图
+
+1.3 等待校验用户名
+邮箱千万不要填写错误
+若用户名没问题会给你的邮箱发送邮件
+2. 登录服务器
+2.1 服务器地址以及其他信息介绍..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              利用serv00搭建hy2节点
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-12-16
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737593580133.jpeg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="1-注册serv00">1. 注册serv00</h2>
+<h3 id="11-打开官网">1.1 打开官网</h3>
+<pre><code class="language-url">serv00.com
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737593457179.png" alt="注册" loading="lazy"></figure>
+<h3 id="12-点击注册">1.2 点击注册</h3>
+<p><img src="https://r2.l2r.top/img/1737593481049.png" alt="点击注册" loading="lazy"><br>
+填写信息：如图<br>
+<img src="https://r2.l2r.top/img/1737593495476.png" alt="信息" loading="lazy"></p>
+<h3 id="13-等待校验用户名">1.3 等待校验用户名</h3>
+<p>邮箱千万不要填写错误<br>
+若用户名没问题会给你的邮箱发送邮件</p>
+<h2 id="2-登录服务器">2. 登录服务器</h2>
+<h3 id="21-服务器地址以及其他信息介绍">2.1 服务器地址以及其他信息介绍</h3>
+<p>邮件中 ：<br>
+SSH/SFTP server address这一项就是服务器远程地址<br>
+DevilWEB webpanel ：后台登录地址其他自己翻译</p>
+<h3 id="22-登录">2.2 登录</h3>
+<p><img src="https://r2.l2r.top/img/1737593510718.png" alt="用户名密码" loading="lazy"><br>
+登录后台，打开可以运行自己的应用<br>
+<img src="https://r2.l2r.top/img/1737593523023.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737593531512.png" alt="" loading="lazy"><br>
+找到你的ip地址，试一下哪个能访问<br>
+<img src="https://r2.l2r.top/img/1737593542005.png" alt="" loading="lazy"></p>
+<h3 id="23放行服务器端口并远程登录">2.3放行服务器端口并远程登录</h3>
+<p><img src="https://r2.l2r.top/img/1737593550635.png" alt="" loading="lazy"><br>
+填写你自己的端口号，一会部署节点用的到节点类型选择udp</p>
+<h3 id="ssh登录">ssh登录</h3>
+<pre><code class="language-shell">ssh 你的用户名@你的ip
+</code></pre>
+<p>执行脚本，会自动生成节点信息</p>
+<pre><code class="language-shell">PORT=你的节点号 UUID=你的UUID bash &lt;(curl -Ls https://github.com/eooce/Sing-box/releases/download/00/2.sh
+</code></pre>
+<p>复制出v2ray的节点信息到</p>
+<pre><code># 在线节点转换网站自动转换成clash节点信息
+https://suburl.v1.mk/
+# clash客户端下载
+https://github.com/clash-verge-rev/clash-verge-rev
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E6%B3%A8%E5%86%8Cserv00">1. 注册serv00</a>
+<ul>
+<li><a href="#11-%E6%89%93%E5%BC%80%E5%AE%98%E7%BD%91">1.1 打开官网</a></li>
+<li><a href="#12-%E7%82%B9%E5%87%BB%E6%B3%A8%E5%86%8C">1.2 点击注册</a></li>
+<li><a href="#13-%E7%AD%89%E5%BE%85%E6%A0%A1%E9%AA%8C%E7%94%A8%E6%88%B7%E5%90%8D">1.3 等待校验用户名</a></li>
+</ul>
+</li>
+<li><a href="#2-%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8">2. 登录服务器</a>
+<ul>
+<li><a href="#21-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E5%85%B6%E4%BB%96%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D">2.1 服务器地址以及其他信息介绍</a></li>
+<li><a href="#22-%E7%99%BB%E5%BD%95">2.2 登录</a></li>
+<li><a href="#23%E6%94%BE%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E5%B9%B6%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95">2.3放行服务器端口并远程登录</a></li>
+<li><a href="#ssh%E7%99%BB%E5%BD%95">ssh登录</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/fei-niu-an-zhuang-kvm/">
+              <h3 class="post-title">
+                飞牛安装kvm
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

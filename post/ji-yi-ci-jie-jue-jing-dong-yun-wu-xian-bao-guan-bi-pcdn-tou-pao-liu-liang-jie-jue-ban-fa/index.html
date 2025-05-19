@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>记一次解决京东云无线宝关闭PCDN偷跑流量解决办法 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="记一次解决京东云无线宝关闭PCDN偷跑流量解决办法 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="情况说明
+简单说京东云无线宝是一个可以使用网络带宽赚钱的设备。
+我只需要一个ap所以我选择关闭pcdn只是用ap模式
+Q：如何关闭PCDN？
+A ：官方解释在京东云无线宝中把网盘设置为内网访问就能关闭
+我按照官方的说明，关闭了pcdn功能结..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              记一次解决京东云无线宝关闭PCDN偷跑流量解决办法
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-09-27
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737611758399.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="情况说明">情况说明</h2>
+<p>简单说京东云无线宝是一个可以使用网络带宽赚钱的设备。<br>
+我只需要一个ap所以我选择关闭pcdn只是用ap模式<br>
+Q：如何关闭PCDN？<br>
+A ：官方解释在京东云无线宝中把网盘设置为内网访问就能关闭<br>
+我按照官方的说明，关闭了pcdn功能结果发现我的dns服务器无线宝设备访问次数非常多，这就引起了我的怀疑<br>
+<img src="https://r2.l2r.top/img/1737611692144.png" alt="" loading="lazy"><br>
+于是乎我打开了我的主路由发现流量不正常非常不正常，因为我的小米路由器每天才不到20m的流量，然而京东云无线宝的设备一天将近400m<br>
+<img src="https://r2.l2r.top/img/1737611703618.png" alt="" loading="lazy"><br>
+并且自带的网盘设备内存也在增加<br>
+<img src="https://r2.l2r.top/img/1737611713561.png" alt="" loading="lazy"></p>
+<h2 id="解决方式">解决方式</h2>
+<p>如果想解决此问题有很多解决方式，在此说两种：<br>
+禁用京东云无线宝的访问ip<br>
+直接禁用京东云无线宝的外网权限<br>
+本想选择第一种方式，结果发现他访问的确实有点多，思考再三选择第二种我反手给它一个禁用<br>
+<img src="https://r2.l2r.top/img/1737611724313.png" alt="" loading="lazy"><br>
+看下结果<br>
+<img src="https://r2.l2r.top/img/1737611739460.png" alt="" loading="lazy"><br>
+观察了一下OK，其他wifi连接的设备正常使用</p>
+<h2 id="附pcdn大规模个户风险图">附PCDN大规模个户风险图</h2>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737611748578.jpeg" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%83%85%E5%86%B5%E8%AF%B4%E6%98%8E">情况说明</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F">解决方式</a></li>
+<li><a href="#%E9%99%84pcdn%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%B8%AA%E6%88%B7%E9%A3%8E%E9%99%A9%E5%9B%BE">附PCDN大规模个户风险图</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/openwrt-lu-you-qi-shang-de-wireguard-vpn-ke-hu-duan-she-zhi/">
+              <h3 class="post-title">
+                OpenWrt 路由器上的 WireGuard VPN 客户端设置
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

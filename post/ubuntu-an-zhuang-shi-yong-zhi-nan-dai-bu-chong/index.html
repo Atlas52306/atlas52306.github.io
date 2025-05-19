@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ubuntu使用指南（待补充） | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ubuntu使用指南（待补充） | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="Ubuntu 开启root远程
+1.设置root密码
+sudo passwd root
+
+验证当前账户密码后设置root账户密码
+2. 安装ssh server服务
+sudo apt install openssh-server
+
+3.安装..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Ubuntu使用指南（待补充）
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-09-18
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737612976005.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h1 id="ubuntu-开启root远程">Ubuntu 开启root远程</h1>
+<h2 id="1设置root密码">1.设置root密码</h2>
+<pre><code>sudo passwd root
+</code></pre>
+<p>验证当前账户密码后设置root账户密码</p>
+<h2 id="2-安装ssh-server服务">2. 安装ssh server服务</h2>
+<pre><code>sudo apt install openssh-server
+</code></pre>
+<h2 id="3安装成功后修改配置文件文件">3.安装成功后修改配置文件文件</h2>
+<p>ps: 若没有vim 则需要安装</p>
+<pre><code>vi /etc/ssh/sshd_config 
+sudo apt install vim
+</code></pre>
+<pre><code>sudo vim /etc/ssh/sshd_config
+# 找到以下行并修改，如果不存在则添加：
+PermitRootLogin yes
+</code></pre>
+<h2 id="4重启ssh服务">4.重启ssh服务</h2>
+<pre><code># 重启SSH服务：
+sudo systemctl restart ssh
+</code></pre>
+<h2 id="5-修改dns">5. 修改dns</h2>
+<pre><code>vi /etc/resolv.conf 
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#ubuntu-%E5%BC%80%E5%90%AFroot%E8%BF%9C%E7%A8%8B">Ubuntu 开启root远程</a>
+<ul>
+<li><a href="#1%E8%AE%BE%E7%BD%AEroot%E5%AF%86%E7%A0%81">1.设置root密码</a></li>
+<li><a href="#2-%E5%AE%89%E8%A3%85ssh-server%E6%9C%8D%E5%8A%A1">2. 安装ssh server服务</a></li>
+<li><a href="#3%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E5%90%8E%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%96%87%E4%BB%B6">3.安装成功后修改配置文件文件</a></li>
+<li><a href="#4%E9%87%8D%E5%90%AFssh%E6%9C%8D%E5%8A%A1">4.重启ssh服务</a></li>
+<li><a href="#5-%E4%BF%AE%E6%94%B9dns">5. 修改dns</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/arm-zhu-ban-sw799-cai-keng-ri-ji/">
+              <h3 class="post-title">
+                ARM主板-SW799踩坑日记
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

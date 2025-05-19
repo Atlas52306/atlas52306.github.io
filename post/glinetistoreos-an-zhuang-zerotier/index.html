@@ -1,0 +1,373 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GL.iNet/iStoreOS  安装ZeroTier访问家庭网络 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="GL.iNet/iStoreOS  安装ZeroTier访问家庭网络 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="ZeroTier 旨在创建安全的、可在任何地方工作的点对点虚拟网络，可在互联网上实现设备之间的安全加密通信。
+准备工作：创建 ZeroTier 网络
+在ZeroTier官网创建账户并获取16位网络ID
+
+一、GL.iNet配置方式
+GL.i..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              GL.iNet/iStoreOS  安装ZeroTier访问家庭网络
+            </h2>
+            <div class="post-info">
+              <span>
+                2025-05-08
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1746684391647.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>ZeroTier 旨在创建安全的、可在任何地方工作的点对点虚拟网络，可在互联网上实现设备之间的安全加密通信。</p>
+<h2 id="准备工作创建-zerotier-网络">准备工作：创建 ZeroTier 网络</h2>
+<p>在<a href="https://www.zerotier.com/">ZeroTier官网</a>创建账户并获取16位网络ID<br>
+<img src="https://r2.l2r.top/img/1746685107467.png" alt="" loading="lazy"></p>
+<h2 id="一-glinet配置方式">一、GL.iNet配置方式</h2>
+<h3 id="glinet-支持型号">GL.iNet 支持型号</h3>
+<table>
+<thead>
+<tr>
+<th>路由器型号</th>
+<th>是否支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL-B3000 (Marble)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT6000 (Flint2)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-X3000 (Spitz AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT3000 (Beryl AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-AXT1800 (Slate AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-A1300 (Slate Plus)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT2500/GL-MT2500A (Brume 2)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-SFT1200 (Opal)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-S1300 (Convexa-S)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-MT1300 (Beryl)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-AX1800 (Flint)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-AR750S (Slate)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-XE300 (Puli)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-X750 (Spitz)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-B1300 (Convexa-B)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-AP1300 (Cirrus)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-X300B (Collie)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-MV1000/GL-MV1000W (Brume)</td>
+<td>√ (测试版)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用设置">使用设置</h3>
+<p>以 GL-MT6000 为例。</p>
+<h4 id="1-创建-zerotier-网络">1. 创建 ZeroTier 网络</h4>
+<p>参考<a href="https://www.zerotier.com/manual/">ZeroTier官方的入门文档</a>，创建一个 ZeroTier 账户和网络。创建时会显示网络 ID，即一串由字母和数字组成的 16 位代码，请记下网络 ID备用。</p>
+<h4 id="2-在路由器上启用-zerotier">2. 在路由器上启用 ZeroTier</h4>
+<p>访问 GL-MT6000 管理面板，在左侧依次点击应用程序 -&gt; ZeroTier。<br>
+启用Zerotier，填入第一步获取的网络 ID，然后点击应用。</p>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1746685200397.png" alt="启用ZeroTier" loading="lazy"></figure>
+<p>界面顶部会提示需要授权，参照下一步指导。<br>
+为方便测试，请按照此文档说明，将另一台设备（如电脑或手机）添加到您的 ZeroTier 网络。</p>
+<h4 id="3-授权设备">3. 授权设备</h4>
+<p>在 GL-MT6000 管理面板，点击ZeroTier Central超链接，跳转到 ZeroTier 控制台。</p>
+<figure data-type="image" tabindex="2"><img src="https://r2.l2r.top/img/1746685284159.png" alt="ZeroTier控制台" loading="lazy"></figure>
+<p>在 ZeroTier 控制台的Members板块，找到新设备并点击 Auth 复选框进行授权。</p>
+<figure data-type="image" tabindex="3"><img src="https://r2.l2r.top/img/1746685403650.png" alt="" loading="lazy"></figure>
+<p>如有需要，可点击Edit，自定义设备名称。</p>
+<figure data-type="image" tabindex="4"><img src="https://r2.l2r.top/img/1746685433671.png" alt="" loading="lazy"></figure>
+<p>授权后，ZeroTier 会为设备分配一个管理 IP。请记下这个 IP 地址，后面步骤会用到。</p>
+<figure data-type="image" tabindex="5"><img src="https://r2.l2r.top/img/1746685453138.png" alt="" loading="lazy"></figure>
+<h3 id="测试连接">测试连接</h3>
+<p>在位于同一 ZeroTier 网络中的另一台设备上，打开网页浏览器，输入上一步获取的管理 IP 访问路由器的管理界面。<br>
+通常情况下，您应该能够访问路由器的管理面板。</p>
+<h3 id="允许远程访问-wan">允许远程访问 WAN</h3>
+<p>若启用此选项，将允许通过 ZeroTier 虚拟网络访问本设备 WAN 端的资源。<br>
+如下所示，如果启用此功能，您可以在 leo-phone 手机端，通过 IP 地址 192.168.8.1 访问 GL-MT3000 ，因为 GL-MT3000 的LAN端口连接到 GL-MT6000 的WAN端口，是 GL-MT6000 的上级设备。</p>
+<figure data-type="image" tabindex="6"><img src="https://r2.l2r.top/img/1746685517687.png" alt="WAN访问示意图" loading="lazy"></figure>
+<p>操作步骤如下：</p>
+<ol>
+<li>
+<p>在 GL-MT6000 的管理面板，启用允许远程访问WAN。</p>
+<figure data-type="image" tabindex="7"><img src="https://r2.l2r.top/img/1746685567946.png" alt="启用WAN访问" loading="lazy"></figure>
+<p>启用后，页面会提示您设置路由规则。</p>
+<figure data-type="image" tabindex="8"><img src="https://r2.l2r.top/img/1746685673172.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>前往my.zerotier.com，或点击上图中的 ZeroTier Central 前往 ZeroTier 控制台，找到Advanced板块，填入对应的路由信息（Destination和Via），然后点击Submit。</p>
+<figure data-type="image" tabindex="9"><img src="https://r2.l2r.top/img/1746685693322.png" alt="设置路由规则" loading="lazy"></figure>
+<p>添加后如下图所示。</p>
+<figure data-type="image" tabindex="10"><img src="https://r2.l2r.top/img/1746685726061.png" alt="路由规则添加完成" loading="lazy"></figure>
+</li>
+<li>
+<p>现在，您可以在其他设备上通过 192.168.8.1 这个 IP 地址访问 GL-MT3000，也可以访问 192.168.8.0/24 网段内的设备。</p>
+</li>
+</ol>
+<h3 id="允许远程访问-lan">允许远程访问 LAN</h3>
+<p>若启用此选项，将允许通过 Zerotier 虚拟网络访问本设备 LAN 内部资源。<br>
+如下所示，如果启用此功能，您可以在 leo-phone 手机端，通过 Ubuntu 的 IP 地址 (192.168.8.110) SSH 访问它，因为 Ubuntu 连接到 GL-MT6000 的LAN端口，是 GL-MT6000 的下级设备。</p>
+<figure data-type="image" tabindex="11"><img src="https://r2.l2r.top/img/1746686267167.png" alt="LAN访问示意图" loading="lazy"></figure>
+<p>操作步骤如下：</p>
+<ol>
+<li>
+<p>在 GL-MT6000 的管理面板，启用允许远程访问LAN。</p>
+<figure data-type="image" tabindex="12"><img src="https://r2.l2r.top/img/1746686294681.png" alt="启用LAN访问" loading="lazy"></figure>
+<p>启用后，页面会提示您设置路由规则。</p>
+<figure data-type="image" tabindex="13"><img src="https://r2.l2r.top/img/1746686331874.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>前往my.zerotier.com，或点击上图中的 ZeroTier Central 前往 ZeroTier 控制台，找到Advanced板块，填入对应的路由信息（Destination和Via），然后点击Submit。</p>
+<figure data-type="image" tabindex="14"><img src="https://r2.l2r.top/img/1746686351304.png" alt="设置LAN路由规则" loading="lazy"></figure>
+<p>添加后如下图所示。</p>
+<figure data-type="image" tabindex="15"><img src="https://r2.l2r.top/img/1746686373981.png" alt="LAN路由规则添加完成" loading="lazy"></figure>
+</li>
+<li>
+<p>现在，您可以在其他设备上通过 192.168.8.110 这个 IP 地址 ping Ubuntu，或通过 SSH 访问 Ubuntu。您也可以访问 192.168.8.0/24 网段内的设备。</p>
+</li>
+<li>
+<p>如果根据上述步骤都配置完了，只能访问到你的路由器，那就找到防火墙区域部分，点编辑</p>
+</li>
+</ol>
+<blockquote>
+<p>PS:区域部分打开ZeroTier会自动生成！ 按照图里自己按照需求改<br>
+<img src="https://r2.l2r.top/img/1746687057507.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1746687219756.png" alt="打开转发" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1746687272206.png" alt="" loading="lazy"></p>
+</blockquote>
+<h2 id="二-istoreos配置方式">二、iStoreOS配置方式</h2>
+<h3 id="1-安装">1. 安装</h3>
+<p>iStore商店搜 ZeroTier，我这里已经安装好了<br>
+<img src="https://r2.l2r.top/img/1746686593890.png" alt="搜索ZeroTier" loading="lazy"><br>
+打开ZeroTier，配置<br>
+<img src="https://r2.l2r.top/img/1746686731886.png" alt="配置" loading="lazy"><br>
+根据图上都勾选，不懂的看上边的GL.iNet详细说明<br>
+其他的设置同上</p>
+<blockquote>
+<p>PS: 别动防火墙 别动防火墙 别动防火墙,别动!!!!!!!!!!!!<br>
+配置完了就能用</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E5%88%9B%E5%BB%BA-zerotier-%E7%BD%91%E7%BB%9C">准备工作：创建 ZeroTier 网络</a></li>
+<li><a href="#%E4%B8%80-glinet%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F">一、GL.iNet配置方式</a>
+<ul>
+<li><a href="#glinet-%E6%94%AF%E6%8C%81%E5%9E%8B%E5%8F%B7">GL.iNet 支持型号</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%AE%BE%E7%BD%AE">使用设置</a>
+<ul>
+<li><a href="#1-%E5%88%9B%E5%BB%BA-zerotier-%E7%BD%91%E7%BB%9C">1. 创建 ZeroTier 网络</a></li>
+<li><a href="#2-%E5%9C%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%8A%E5%90%AF%E7%94%A8-zerotier">2. 在路由器上启用 ZeroTier</a></li>
+<li><a href="#3-%E6%8E%88%E6%9D%83%E8%AE%BE%E5%A4%87">3. 授权设备</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5">测试连接</a></li>
+<li><a href="#%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE-wan">允许远程访问 WAN</a></li>
+<li><a href="#%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE-lan">允许远程访问 LAN</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-istoreos%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F">二、iStoreOS配置方式</a>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85">1. 安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/serv00-kai-shi-feng-hao-liao-tui-keng-bing-ji-lu-yi-xia/">
+              <h3 class="post-title">
+                Serv00开始封号了，退坑并记录一下
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

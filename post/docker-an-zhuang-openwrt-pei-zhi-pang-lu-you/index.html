@@ -1,0 +1,270 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docker安装Openwrt 配置旁路由 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Docker安装Openwrt 配置旁路由 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="介绍一个网站
+这是一个可以自编译openwrt的网站，一会需要下载镜像包
+并且，非付费的用户可以每天有一个免费的编译机会，大佬还自建了软件源....简直太香了（除了慢点）
+1. 打开网卡混杂模式
+
+这里只介绍Ubuntu、debian 以及..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Docker安装Openwrt 配置旁路由
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-11-01
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737609701865.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="介绍一个网站">介绍一个网站</h2>
+<p><a href="https://openwrt.ai">这是一个可以自编译openwrt的网站</a>，一会需要下载镜像包<br>
+并且，非付费的用户可以每天有一个免费的编译机会，大佬还自建了软件源....简直太香了（除了慢点）</p>
+<h2 id="1-打开网卡混杂模式">1. 打开网卡混杂模式</h2>
+<ul>
+<li>这里只介绍Ubuntu、debian 以及armbian系统的命令，其他系统自行百度</li>
+</ul>
+<pre><code>ip link set eth0 promisc on
+</code></pre>
+<p>eth0 指的是网卡名称</p>
+<h2 id="2-创建一个macvlan网络">2. 创建一个macvlan网络</h2>
+<ul>
+<li>创建macvlan网络,是为了实现独立mac地址，在网络层与其他物理机或者容器实现互联。</li>
+</ul>
+<pre><code># 查看这个网卡的网络信息
+ip addr show eth0
+# 假设eth0的IP是10.0.0.1/24，子网是10.0.0.0/24，网关为10.0.0.1 。那我们的命令为
+docker network create -d macvlan \
+  --subnet=10.0.0.0/24 \
+  --gateway=10.0.0.1 \
+  -o parent=eth0 \
+  my-macvlan-net
+</code></pre>
+<p>这里，--subnet是macvlan网络的子网，--gateway是网关（通常是子网内的第一个可用地址），-o parent=eth0指定了物理接口。</p>
+<h2 id="3下载-docker镜像包">3.下载 docker镜像包</h2>
+<p>打开上面这个网站<br>
+<img src="https://r2.l2r.top/img/1737609726124.png" alt="" loading="lazy"><br>
+鼠标滚轮把页面划到最下面，下载这个镜像包，到你想部署Openwrt的这台设备的上。<br>
+wget也好，下载上传了也好，随各位心意。<br>
+<img src="https://r2.l2r.top/img/1737609735883.png" alt="" loading="lazy"><br>
+如果你是arm设备或者是32位设备，请在固件搜索区域搜索<br>
+<img src="https://r2.l2r.top/img/1737609745662.png" alt="" loading="lazy"></p>
+<h2 id="4-导入镜像到docker中">4. 导入镜像到docker中</h2>
+<pre><code>docker import 下载的镜像包名称 docker中显示的镜像名称
+# 举例
+docker import openwrt-x86-64-generic-rootfs.tar.gz kiddin9_openwrt
+</code></pre>
+<h2 id="5-创建容器">5. 创建容器</h2>
+<pre><code>docker run –restart always –name openwrt kiddin9_openwrt -d –network openwrt –privileged /sbin/init
+</code></pre>
+<p>自己手动创建或者自己改命令</p>
+<h2 id="6-修改openwrt-ip">6. 修改openwrt IP</h2>
+<pre><code class="language-bash"># 进入容器
+docker exec -it openwrt sh
+
+# 修改openwrt后台登录IP 
+vi /etc/config/network
+
+# 重启网络
+/etc/init.d/network restart
+
+# 或者
+# 或者退出容器内部环境，在宿主机环境执行重启容器命令
+docker container restart openwrt
+</code></pre>
+<pre><code class="language-bash">sed -i ‘s/10.0.0.1/10.0.0.25/’ /etc/config/network &amp;&amp; /etc/init.d/network restart
+</code></pre>
+<p>直接网页输入IP，页面登录</p>
+<pre><code>#账号密码
+root/root
+</code></pre>
+<h2 id="7-配置位旁路由">7. 配置位旁路由</h2>
+<p><img src="https://r2.l2r.top/img/1737609762015.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737609776327.png" alt="" loading="lazy"></p>
+<h2 id="8-注意事项">8. 注意事项</h2>
+<ul>
+<li>首页这个联网状态别管他，软件包界面加载慢也别管他，那状态不对。<br>
+<img src="https://r2.l2r.top/img/1737609790167.png" alt="" loading="lazy"></li>
+<li>容器没有办法真正的重启，别问同为啥自己查</li>
+<li>尽量少装点插件，docker的性能不是很好，我只装了openclash用的，其余没装</li>
+</ul>
+<h2 id="一些废话">一些废话</h2>
+<p>首先说一下我为啥在dokcer中部署openwrt，而不是在openwrt中使用docker</p>
+<ul>
+<li>设备型号：sw799，配置: CPU RK3399 4+16<br>
+一块捡垃圾来的微信支付设备主板。没有太多的适配固件不多，最常用的还是大佬适配的Armbian固件，所以使用了Armbian固件。</li>
+<li>需求：我需要AdguardHome的DNS服务器 和一个openwrt做旁路由<br>
+问题分析：我有一个CPU型号为N6000的ikuai的软路由，以及一个性能还算是凑合的飞牛nas。一些基础的都已经满足了，我需要的是一个稳定的，性能还可以的，并且功耗小的设备。<br>
+Q：为什么不使用ikuai虚拟机部署？<br>
+A：我只想我的主路由保持稳定，而不是all in boom<br>
+Q：为什么不在飞牛里部署？<br>
+A：需求不一样，飞牛跑的都是业务类的服务，而像dns解析，旁路由我想给他单独出来</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99">介绍一个网站</a></li>
+<li><a href="#1-%E6%89%93%E5%BC%80%E7%BD%91%E5%8D%A1%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F">1. 打开网卡混杂模式</a></li>
+<li><a href="#2-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmacvlan%E7%BD%91%E7%BB%9C">2. 创建一个macvlan网络</a></li>
+<li><a href="#3%E4%B8%8B%E8%BD%BD-docker%E9%95%9C%E5%83%8F%E5%8C%85">3.下载 docker镜像包</a></li>
+<li><a href="#4-%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F%E5%88%B0docker%E4%B8%AD">4. 导入镜像到docker中</a></li>
+<li><a href="#5-%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8">5. 创建容器</a></li>
+<li><a href="#6-%E4%BF%AE%E6%94%B9openwrt-ip">6. 修改openwrt IP</a></li>
+<li><a href="#7-%E9%85%8D%E7%BD%AE%E4%BD%8D%E6%97%81%E8%B7%AF%E7%94%B1">7. 配置位旁路由</a></li>
+<li><a href="#8-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">8. 注意事项</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E5%BA%9F%E8%AF%9D">一些废话</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/ikuai-xu-ni-ji-an-zhuang-istoreos-pang-lu-you/">
+              <h3 class="post-title">
+                iKuai虚拟机安装iStoreOS旁路由
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

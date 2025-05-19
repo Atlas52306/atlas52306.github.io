@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>移动光猫改桥接模式 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="移动光猫改桥接模式 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 为啥桥接啊，我也不知道，我就想改桥接
+改桥接以后可以映射端口使用STUN内网穿透，短暂获取随机外网端口
+# 用户名
+CMCCAdmin
+# 密码自己跟移动贸易一下
+
+2. 获取光口的vlanID，修改配置
+2.1 记录下VID
+
+原理..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              移动光猫改桥接模式
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-10-17
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737610924359.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="1-为啥桥接啊我也不知道我就想改桥接">1. 为啥桥接啊，我也不知道，我就想改桥接</h2>
+<p>改桥接以后可以映射端口使用STUN内网穿透，短暂获取随机外网端口</p>
+<pre><code># 用户名
+CMCCAdmin
+# 密码自己跟移动贸易一下
+</code></pre>
+<h2 id="2-获取光口的vlanid修改配置">2. 获取光口的vlanID，修改配置</h2>
+<h3 id="21-记录下vid">2.1 记录下VID</h3>
+<p><img src="https://r2.l2r.top/img/1737610936198.png" alt="" loading="lazy"><br>
+原理： 可以看到前面连接名称是internet（网络）然后VID*** ，因为移动没有公网ip是内网的情况下给用户们划分了vlan 每个vlan代表不同的业务<br>
+记住IP协议版本、端口绑定、VLAN模式、VLAN ID、802.1p、MTU等参数设置</p>
+<h3 id="22-改桥接模式">2.2 改桥接模式</h3>
+<p>这样子就行了 bridge是桥接模式<br>
+<img src="https://r2.l2r.top/img/1737610960420.png" alt="" loading="lazy"><br>
+最后删除原来Internet配置，重启光猫设备，然后使用路由进行拨号</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E4%B8%BA%E5%95%A5%E6%A1%A5%E6%8E%A5%E5%95%8A%E6%88%91%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%B0%B1%E6%83%B3%E6%94%B9%E6%A1%A5%E6%8E%A5">1. 为啥桥接啊，我也不知道，我就想改桥接</a></li>
+<li><a href="#2-%E8%8E%B7%E5%8F%96%E5%85%89%E5%8F%A3%E7%9A%84vlanid%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE">2. 获取光口的vlanID，修改配置</a>
+<ul>
+<li><a href="#21-%E8%AE%B0%E5%BD%95%E4%B8%8Bvid">2.1 记录下VID</a></li>
+<li><a href="#22-%E6%94%B9%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F">2.2 改桥接模式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/ikuai-shi-yong-xin-de/">
+              <h3 class="post-title">
+                iKuai使用心得
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

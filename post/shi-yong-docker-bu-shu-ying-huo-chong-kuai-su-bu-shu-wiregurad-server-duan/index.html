@@ -1,0 +1,259 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>使用docker部署萤火虫快速部署WireGurad Server端 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="使用docker部署萤火虫快速部署WireGurad Server端 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="使用WireGurad快速回家，访问家里的网络
+1. docker部署
+项目地址
+https://github.com/Safe3/firefly
+
+docker-compose.yml
+version: '3'
+services:
+  f..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              使用docker部署萤火虫快速部署WireGurad Server端
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-10-17
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737609949833.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>使用WireGurad快速回家，访问家里的网络</p>
+<h2 id="1-docker部署">1. docker部署</h2>
+<p>项目地址</p>
+<pre><code>https://github.com/Safe3/firefly
+</code></pre>
+<p>docker-compose.yml</p>
+<pre><code>version: '3'
+services:
+  firefly:
+    image: &quot;uusec/firefly:latest&quot;
+    container_name: firefly-server
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    volumes:
+      - /lib/modules:/lib/modules
+      - /etc/firefly:/firefly/conf
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    restart: unless-stopped
+    environment:
+      #- TZ=Asia/Shanghai
+      #- FIREFLY_DEVICE=eth0
+      - FIREFLY_PASSWORD=firefly
+      #- FIREFLY_AUTO_SSL=false
+      #- FIREFLY_PORT=50121
+  
+</code></pre>
+<p>要注意的是network要改成除了host的任意一个网络<br>
+原因是因为wireguard只支持udp在openwrt和其他nas的默认情况下是tcp协议<br>
+这里我们要改成子网，并且把端口映射到宿主机协议改为udp<br>
+<img src="https://r2.l2r.top/img/1737609964447.png" alt="" loading="lazy"></p>
+<h2 id="修改配置文件">修改配置文件</h2>
+<p>部署完成以后修改 /etc/firefly 目录下的config.json配置文件<br>
+<img src="https://r2.l2r.top/img/1737609975567.png" alt="" loading="lazy"><br>
+① 你ddns出去的域名，注意如果你修改了端口号记得修改<br>
+② dns服务器，如果你本地搭建了dns服务器，你想使用的话那你自己改，这里我用了阿里的dns服务器<br>
+ok接下来启动firefly吧</p>
+<h5 id="注意别踩坑">注意别踩坑：</h5>
+<p>wg_device这个字段，如果你有两个以上的网卡，请确认你的流量出口是哪个网卡自行修改<br>
+服务端配置详解：</p>
+<pre><code>{
+ &quot;version&quot;: 4.3,              // 萤火虫当前版本
+ &quot;host&quot;: &quot;7.7.7.7&quot;,           // 萤火虫web管理后台ip或域名，默认为自动获取的公网ip
+ &quot;port&quot;: 50121,               // 萤火虫web管理后台端口
+ &quot;auto_ssl&quot;: false,           // 萤火虫web是否启用自动申请免费SSL证书并续期，启用前将web端口改为443并配置host为域名
+ &quot;password&quot;: &quot;firefly&quot;,       // 萤火虫web管理后台登录认证密码
+ &quot;lang&quot;: &quot;en&quot;,                // 萤火虫web管理后台多语言支持，中文请将en改为cn
+ &quot;ui_traffic_stats&quot;: true,    // 萤火虫web管理后台是否开启流量图特效
+ &quot;ui_chart_type&quot;: 2,          // 萤火虫web管理后台流量特效图类型
+ &quot;log_level&quot;: &quot;error&quot;,        // 萤火虫服务端日志记录等级
+ &quot;wg_private_key&quot;: &quot;YBw5KAo1vM2mz35GLhZB01ZNYWJYWdGZNQT1MebuCHk=&quot;,  // 萤火虫服务端 WireGuard 私钥
+ &quot;wg_device&quot;: &quot;eth0&quot;,                   // 萤火虫服务端 WireGuard 出入流量网卡名称
+ &quot;wg_port&quot;: 50120,                      // 萤火虫服务端 WireGuard UDP端口
+ &quot;wg_mtu&quot;: 1280,                        // 萤火虫服务端 WireGuard MTU值
+ &quot;wg_persistent_keepalive&quot;: 25,         // 萤火虫客户端存活包发送间隔时间
+ &quot;wg_address&quot;: &quot;198.18.0.1/15&quot;,         // 萤火虫客户端虚拟ip网段范围
+ &quot;wg_dns&quot;: &quot;1.1.1.1&quot;,                   // 萤火虫客户端dns配置
+ &quot;wg_allowed_ips&quot;: &quot;0.0.0.0/0, ::/0&quot;,   // 萤火虫客户端要转发流量到服务端的ip地址范围，默认所有流量
+ &quot;wg_proxy_address&quot;: &quot;:50122&quot;           // 萤火虫TCP协议中转监听地址，可防止UDP QoS限流
+}
+</code></pre>
+<h2 id="3一点点小思路">3.一点点小思路</h2>
+<p>使用ShellCrash劫持局域网流量实现WireGuard 使用坤厂来学术查询<br>
+看图吧看图<br>
+<img src="https://r2.l2r.top/img/1737609987801.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737609999682.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737610008472.png" alt="" loading="lazy"><br>
+这样，你别的设备已经正常，而萤火虫可以学术查询<br>
+shellcrash 项目地址：</p>
+<pre><code>https://github.com/juewuy/ShellCrash
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-docker%E9%83%A8%E7%BD%B2">1. docker部署</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">修改配置文件</a><br>
+*<br>
+*<br>
+* <a href="#%E6%B3%A8%E6%84%8F%E5%88%AB%E8%B8%A9%E5%9D%91">注意别踩坑：</a></li>
+<li><a href="#3%E4%B8%80%E7%82%B9%E7%82%B9%E5%B0%8F%E6%80%9D%E8%B7%AF">3.一点点小思路</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/yi-dong-guang-mao-gai-qiao-jie-mo-shi/">
+              <h3 class="post-title">
+                移动光猫改桥接模式
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

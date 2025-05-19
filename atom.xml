@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.ctrlca.com</id>
+    <title>Atlas&apos;s blog</title>
+    <updated>2025-05-19T07:53:39.306Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.ctrlca.com"/>
+    <link rel="self" href="https://blog.ctrlca.com/atom.xml"/>
+    <subtitle>有梦就要去追,待会儿醒了，就不容易再睡着了</subtitle>
+    <logo>https://blog.ctrlca.com/images/avatar.png</logo>
+    <icon>https://blog.ctrlca.com/favicon.ico</icon>
+    <rights>All rights reserved 2025, Atlas&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[GL.iNet/iStoreOS  安装ZeroTier访问家庭网络]]></title>
+        <id>https://blog.ctrlca.com/post/glinetistoreos-an-zhuang-zerotier/</id>
+        <link href="https://blog.ctrlca.com/post/glinetistoreos-an-zhuang-zerotier/">
+        </link>
+        <updated>2025-05-08T05:46:14.000Z</updated>
+        <content type="html"><![CDATA[<p>ZeroTier 旨在创建安全的、可在任何地方工作的点对点虚拟网络，可在互联网上实现设备之间的安全加密通信。</p>
+<h2 id="准备工作创建-zerotier-网络">准备工作：创建 ZeroTier 网络</h2>
+<p>在<a href="https://www.zerotier.com/">ZeroTier官网</a>创建账户并获取16位网络ID<br>
+<img src="https://r2.l2r.top/img/1746685107467.png" alt="" loading="lazy"></p>
+<h2 id="一-glinet配置方式">一、GL.iNet配置方式</h2>
+<h3 id="glinet-支持型号">GL.iNet 支持型号</h3>
+<table>
+<thead>
+<tr>
+<th>路由器型号</th>
+<th>是否支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL-B3000 (Marble)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT6000 (Flint2)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-X3000 (Spitz AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT3000 (Beryl AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-AXT1800 (Slate AX)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-A1300 (Slate Plus)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-MT2500/GL-MT2500A (Brume 2)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-SFT1200 (Opal)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-S1300 (Convexa-S)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-MT1300 (Beryl)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-AX1800 (Flint)</td>
+<td>√</td>
+</tr>
+<tr>
+<td>GL-AR750S (Slate)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-XE300 (Puli)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-X750 (Spitz)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-B1300 (Convexa-B)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-AP1300 (Cirrus)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-X300B (Collie)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GL-MV1000/GL-MV1000W (Brume)</td>
+<td>√ (测试版)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用设置">使用设置</h3>
+<p>以 GL-MT6000 为例。</p>
+<h4 id="1-创建-zerotier-网络">1. 创建 ZeroTier 网络</h4>
+<p>参考<a href="https://www.zerotier.com/manual/">ZeroTier官方的入门文档</a>，创建一个 ZeroTier 账户和网络。创建时会显示网络 ID，即一串由字母和数字组成的 16 位代码，请记下网络 ID备用。</p>
+<h4 id="2-在路由器上启用-zerotier">2. 在路由器上启用 ZeroTier</h4>
+<p>访问 GL-MT6000 管理面板，在左侧依次点击应用程序 -&gt; ZeroTier。<br>
+启用Zerotier，填入第一步获取的网络 ID，然后点击应用。</p>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1746685200397.png" alt="启用ZeroTier" loading="lazy"></figure>
+<p>界面顶部会提示需要授权，参照下一步指导。<br>
+为方便测试，请按照此文档说明，将另一台设备（如电脑或手机）添加到您的 ZeroTier 网络。</p>
+<h4 id="3-授权设备">3. 授权设备</h4>
+<p>在 GL-MT6000 管理面板，点击ZeroTier Central超链接，跳转到 ZeroTier 控制台。</p>
+<figure data-type="image" tabindex="2"><img src="https://r2.l2r.top/img/1746685284159.png" alt="ZeroTier控制台" loading="lazy"></figure>
+<p>在 ZeroTier 控制台的Members板块，找到新设备并点击 Auth 复选框进行授权。</p>
+<figure data-type="image" tabindex="3"><img src="https://r2.l2r.top/img/1746685403650.png" alt="" loading="lazy"></figure>
+<p>如有需要，可点击Edit，自定义设备名称。</p>
+<figure data-type="image" tabindex="4"><img src="https://r2.l2r.top/img/1746685433671.png" alt="" loading="lazy"></figure>
+<p>授权后，ZeroTier 会为设备分配一个管理 IP。请记下这个 IP 地址，后面步骤会用到。</p>
+<figure data-type="image" tabindex="5"><img src="https://r2.l2r.top/img/1746685453138.png" alt="" loading="lazy"></figure>
+<h3 id="测试连接">测试连接</h3>
+<p>在位于同一 ZeroTier 网络中的另一台设备上，打开网页浏览器，输入上一步获取的管理 IP 访问路由器的管理界面。<br>
+通常情况下，您应该能够访问路由器的管理面板。</p>
+<h3 id="允许远程访问-wan">允许远程访问 WAN</h3>
+<p>若启用此选项，将允许通过 ZeroTier 虚拟网络访问本设备 WAN 端的资源。<br>
+如下所示，如果启用此功能，您可以在 leo-phone 手机端，通过 IP 地址 192.168.8.1 访问 GL-MT3000 ，因为 GL-MT3000 的LAN端口连接到 GL-MT6000 的WAN端口，是 GL-MT6000 的上级设备。</p>
+<figure data-type="image" tabindex="6"><img src="https://r2.l2r.top/img/1746685517687.png" alt="WAN访问示意图" loading="lazy"></figure>
+<p>操作步骤如下：</p>
+<ol>
+<li>
+<p>在 GL-MT6000 的管理面板，启用允许远程访问WAN。</p>
+<figure data-type="image" tabindex="7"><img src="https://r2.l2r.top/img/1746685567946.png" alt="启用WAN访问" loading="lazy"></figure>
+<p>启用后，页面会提示您设置路由规则。</p>
+<figure data-type="image" tabindex="8"><img src="https://r2.l2r.top/img/1746685673172.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>前往my.zerotier.com，或点击上图中的 ZeroTier Central 前往 ZeroTier 控制台，找到Advanced板块，填入对应的路由信息（Destination和Via），然后点击Submit。</p>
+<figure data-type="image" tabindex="9"><img src="https://r2.l2r.top/img/1746685693322.png" alt="设置路由规则" loading="lazy"></figure>
+<p>添加后如下图所示。</p>
+<figure data-type="image" tabindex="10"><img src="https://r2.l2r.top/img/1746685726061.png" alt="路由规则添加完成" loading="lazy"></figure>
+</li>
+<li>
+<p>现在，您可以在其他设备上通过 192.168.8.1 这个 IP 地址访问 GL-MT3000，也可以访问 192.168.8.0/24 网段内的设备。</p>
+</li>
+</ol>
+<h3 id="允许远程访问-lan">允许远程访问 LAN</h3>
+<p>若启用此选项，将允许通过 Zerotier 虚拟网络访问本设备 LAN 内部资源。<br>
+如下所示，如果启用此功能，您可以在 leo-phone 手机端，通过 Ubuntu 的 IP 地址 (192.168.8.110) SSH 访问它，因为 Ubuntu 连接到 GL-MT6000 的LAN端口，是 GL-MT6000 的下级设备。</p>
+<figure data-type="image" tabindex="11"><img src="https://r2.l2r.top/img/1746686267167.png" alt="LAN访问示意图" loading="lazy"></figure>
+<p>操作步骤如下：</p>
+<ol>
+<li>
+<p>在 GL-MT6000 的管理面板，启用允许远程访问LAN。</p>
+<figure data-type="image" tabindex="12"><img src="https://r2.l2r.top/img/1746686294681.png" alt="启用LAN访问" loading="lazy"></figure>
+<p>启用后，页面会提示您设置路由规则。</p>
+<figure data-type="image" tabindex="13"><img src="https://r2.l2r.top/img/1746686331874.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>前往my.zerotier.com，或点击上图中的 ZeroTier Central 前往 ZeroTier 控制台，找到Advanced板块，填入对应的路由信息（Destination和Via），然后点击Submit。</p>
+<figure data-type="image" tabindex="14"><img src="https://r2.l2r.top/img/1746686351304.png" alt="设置LAN路由规则" loading="lazy"></figure>
+<p>添加后如下图所示。</p>
+<figure data-type="image" tabindex="15"><img src="https://r2.l2r.top/img/1746686373981.png" alt="LAN路由规则添加完成" loading="lazy"></figure>
+</li>
+<li>
+<p>现在，您可以在其他设备上通过 192.168.8.110 这个 IP 地址 ping Ubuntu，或通过 SSH 访问 Ubuntu。您也可以访问 192.168.8.0/24 网段内的设备。</p>
+</li>
+<li>
+<p>如果根据上述步骤都配置完了，只能访问到你的路由器，那就找到防火墙区域部分，点编辑</p>
+</li>
+</ol>
+<blockquote>
+<p>PS:区域部分打开ZeroTier会自动生成！ 按照图里自己按照需求改<br>
+<img src="https://r2.l2r.top/img/1746687057507.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1746687219756.png" alt="打开转发" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1746687272206.png" alt="" loading="lazy"></p>
+</blockquote>
+<h2 id="二-istoreos配置方式">二、iStoreOS配置方式</h2>
+<h3 id="1-安装">1. 安装</h3>
+<p>iStore商店搜 ZeroTier，我这里已经安装好了<br>
+<img src="https://r2.l2r.top/img/1746686593890.png" alt="搜索ZeroTier" loading="lazy"><br>
+打开ZeroTier，配置<br>
+<img src="https://r2.l2r.top/img/1746686731886.png" alt="配置" loading="lazy"><br>
+根据图上都勾选，不懂的看上边的GL.iNet详细说明<br>
+其他的设置同上</p>
+<blockquote>
+<p>PS: 别动防火墙 别动防火墙 别动防火墙,别动!!!!!!!!!!!!<br>
+配置完了就能用</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Serv00开始封号了，退坑并记录一下]]></title>
+        <id>https://blog.ctrlca.com/post/serv00-kai-shi-feng-hao-liao-tui-keng-bing-ji-lu-yi-xia/</id>
+        <link href="https://blog.ctrlca.com/post/serv00-kai-shi-feng-hao-liao-tui-keng-bing-ji-lu-yi-xia/">
+        </link>
+        <updated>2025-04-01T01:57:56.000Z</updated>
+        <content type="html"><![CDATA[<p>官方开始大量封号，原因嘛，因为出了付费版本，大家低调使用吧<br>
+另外，该转移转移嗷，别数据丢了<br>
+特别注意多个账号的尽量换ip登录！！！！！！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[全自动获取免费🚀]]></title>
+        <id>https://blog.ctrlca.com/post/quan-zi-dong-huo-qu-mian-fei/</id>
+        <link href="https://blog.ctrlca.com/post/quan-zi-dong-huo-qu-mian-fei/">
+        </link>
+        <updated>2025-02-13T03:06:48.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-首先fork大佬的仓库">1. 首先fork大佬的仓库</h2>
+<pre><code># 项目地址
+https://github.com/wzdnzd/aggregator
+</code></pre>
+<p><img src="https://r2.l2r.top/img/1739416360648.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1739416460253.png" alt="" loading="lazy"></p>
+<h2 id="2-创建自动化">2. 创建自动化</h2>
+<p>点击fork以后等待片刻等仓库fork完成后，点击Actions<br>
+<img src="https://r2.l2r.top/img/1739416531129.png" alt="" loading="lazy"></p>
+<h2 id="21-创建workflows">2.1 创建workflows</h2>
+<p>开启 Collect Delete<br>
+<img src="https://r2.l2r.top/img/1739416647105.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1739416703649.png" alt="" loading="lazy"></p>
+<h2 id="3-创建一个gist">3. 创建一个gist</h2>
+<pre><code># 打开地址
+https://gist.github.com/
+</code></pre>
+<p>创建并获取到username/gist_id，信息一开始随便填（真·随便填）</p>
+<p><img src="https://r2.l2r.top/img/1739417046192.png" alt="" loading="lazy"><br>
+获取下图红框内的数据，暂存，后边用<br>
+<img src="https://r2.l2r.top/img/1739418470107.png" alt="" loading="lazy"></p>
+<h2 id="4创建fine-grained-tokens">4.创建fine-grained tokens</h2>
+<pre><code># 快速跳转url
+https://github.com/settings/personal-access-tokens
+</code></pre>
+<p><img src="https://r2.l2r.top/img/1739417298767.png" alt="" loading="lazy"><br>
+下拉<br>
+<img src="https://r2.l2r.top/img/1739417393725.png" alt="" loading="lazy"><br>
+点击展开<br>
+<img src="https://r2.l2r.top/img/1739417459198.png" alt="" loading="lazy"><br>
+下拉<br>
+<img src="https://r2.l2r.top/img/1739417501169.png" alt="" loading="lazy"><br>
+得到token<br>
+<img src="https://r2.l2r.top/img/1739417984247.png" alt="" loading="lazy"></p>
+<h2 id="5-配置参数">5. 配置参数</h2>
+<p><img src="https://r2.l2r.top/img/1739418128584.png" alt="" loading="lazy"><br>
+GIST_LINK ：刚才gist的username/gist_id<br>
+<img src="https://r2.l2r.top/img/1739418243218.png" alt="" loading="lazy"><br>
+GIST_PAT : Fine-grained token<br>
+<img src="https://r2.l2r.top/img/1739418354187.png" alt="" loading="lazy"></p>
+<h2 id="6-运行测试">6. 运行测试</h2>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1739418648903.png" alt="" loading="lazy"></figure>
+<h2 id="7-获取订阅">7. 获取订阅</h2>
+<p>点击<br>
+<img src="https://r2.l2r.top/img/1739418806265.png" alt="" loading="lazy"><br>
+进入<br>
+<img src="https://r2.l2r.top/img/1739418853982.png" alt="" loading="lazy"><br>
+获取永久URL，删除下图说明临时id删掉就是永久链接了<br>
+<img src="https://r2.l2r.top/img/1739418972202.png" alt="" loading="lazy"><br>
+修改执行时间的位置<br>
+<img src="https://r2.l2r.top/img/1739423584586.png" alt="" loading="lazy"></p>
+<h2 id="免责申明">免责申明</h2>
+<p><code>仅用作学习爬虫技术，请勿滥用，不要通过此工具做任何违法乱纪或有损国家利益之事</code><br>
+<code> 禁止使用该项目进行任何盈利活动，对一切非法使用所产生的后果，本人概不负责</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[利用serv00搭建hy2节点]]></title>
+        <id>https://blog.ctrlca.com/post/li-yong-serv00-da-jian-hy2-jie-dian/</id>
+        <link href="https://blog.ctrlca.com/post/li-yong-serv00-da-jian-hy2-jie-dian/">
+        </link>
+        <updated>2024-12-16T09:02:28.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-注册serv00">1. 注册serv00</h2>
+<h3 id="11-打开官网">1.1 打开官网</h3>
+<pre><code class="language-url">serv00.com
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737593457179.png" alt="注册" loading="lazy"></figure>
+<h3 id="12-点击注册">1.2 点击注册</h3>
+<p><img src="https://r2.l2r.top/img/1737593481049.png" alt="点击注册" loading="lazy"><br>
+填写信息：如图<br>
+<img src="https://r2.l2r.top/img/1737593495476.png" alt="信息" loading="lazy"></p>
+<h3 id="13-等待校验用户名">1.3 等待校验用户名</h3>
+<p>邮箱千万不要填写错误<br>
+若用户名没问题会给你的邮箱发送邮件</p>
+<h2 id="2-登录服务器">2. 登录服务器</h2>
+<h3 id="21-服务器地址以及其他信息介绍">2.1 服务器地址以及其他信息介绍</h3>
+<p>邮件中 ：<br>
+SSH/SFTP server address这一项就是服务器远程地址<br>
+DevilWEB webpanel ：后台登录地址其他自己翻译</p>
+<h3 id="22-登录">2.2 登录</h3>
+<p><img src="https://r2.l2r.top/img/1737593510718.png" alt="用户名密码" loading="lazy"><br>
+登录后台，打开可以运行自己的应用<br>
+<img src="https://r2.l2r.top/img/1737593523023.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737593531512.png" alt="" loading="lazy"><br>
+找到你的ip地址，试一下哪个能访问<br>
+<img src="https://r2.l2r.top/img/1737593542005.png" alt="" loading="lazy"></p>
+<h3 id="23放行服务器端口并远程登录">2.3放行服务器端口并远程登录</h3>
+<p><img src="https://r2.l2r.top/img/1737593550635.png" alt="" loading="lazy"><br>
+填写你自己的端口号，一会部署节点用的到节点类型选择udp</p>
+<h3 id="ssh登录">ssh登录</h3>
+<pre><code class="language-shell">ssh 你的用户名@你的ip
+</code></pre>
+<p>执行脚本，会自动生成节点信息</p>
+<pre><code class="language-shell">PORT=你的节点号 UUID=你的UUID bash &lt;(curl -Ls https://github.com/eooce/Sing-box/releases/download/00/2.sh
+</code></pre>
+<p>复制出v2ray的节点信息到</p>
+<pre><code># 在线节点转换网站自动转换成clash节点信息
+https://suburl.v1.mk/
+# clash客户端下载
+https://github.com/clash-verge-rev/clash-verge-rev
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[飞牛安装kvm]]></title>
+        <id>https://blog.ctrlca.com/post/fei-niu-an-zhuang-kvm/</id>
+        <link href="https://blog.ctrlca.com/post/fei-niu-an-zhuang-kvm/">
+        </link>
+        <updated>2024-11-20T01:25:35.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-安装依赖">1. 安装依赖</h2>
+<pre><code class="language-bash">sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+</code></pre>
+<h2 id="2-安装cockpit-以及虚拟机管理软件">2. 安装cockpit 以及虚拟机管理软件</h2>
+<pre><code class="language-bash">. /etc/os-release
+sudo apt install -t ${VERSION_CODENAME}-backports cockpit cockpit-machines
+</code></pre>
+<h2 id="3-启动cockpit">3. 启动cockpit</h2>
+<pre><code class="language-bash">sudo systemctl start cockpit
+</code></pre>
+<h2 id="4-访问cockpit">4. 访问cockpit</h2>
+<pre><code class="language-url">https://ip:9090
+</code></pre>
+<h2 id="5-cockpit官网指南">5. cockpit官网指南</h2>
+<pre><code class="language-url">https://cockpit-project.org/guide/latest/guide
+</code></pre>
+<h2 id="6-关闭apparmor对libvirt安全限制">6. 关闭Apparmor对Libvirt安全限制</h2>
+<p>Libvirt在执行和访问系统文件的时候会被Apparmor阻挡，因此为了确保Libvirt始终有必须的权限，必须禁用apparmor：</p>
+<pre><code class="language-bash">ln -s /etc/apparmor.d/usr.sbin.libvirtd  /etc/apparmor.d/disable/
+apparmor_parser -R  /etc/apparmor.d/usr.sbin.libvirtd
+</code></pre>
+<p>执行完成后重启设备</p>
+<h2 id="7-账号密码">7. 账号密码</h2>
+<pre><code>飞牛的账号密码
+</code></pre>
+<h2 id="8-再cockpit操作界面上创建bridge网络使虚拟机通过bridge0桥接到物理网络">8. 再cockpit操作界面上创建Bridge网络，使虚拟机通过bridge0桥接到物理网络</h2>
+<p>略</p>
+<h2 id="9-解决虚拟机网桥不通的问题">9. 解决虚拟机网桥不通的问题</h2>
+<h3 id="91-添加规则">9.1 添加规则</h3>
+<pre><code class="language-bash">nft add rule ip filter FORWARD iifname &quot;bridge0&quot; accept
+nft add rule ip filter FORWARD oifname &quot;bridge0&quot; accept
+</code></pre>
+<h3 id="92-保存规则">9.2 保存规则</h3>
+<pre><code class="language-bash">sudo nft list ruleset &gt; /etc/nftables.conf
+</code></pre>
+<h3 id="93-重启-检查错误-设置开机启动">9.3 重启、检查错误、设置开机启动</h3>
+<pre><code class="language-bash"># 设置开机启动
+sudo systemctl enable nftables
+# 重启
+sudo systemctl restart nftables
+</code></pre>
+<p>这里说到错误，如果你装了其他的shell代理软件保存规则时可能会报错<br>
+去cockpit里看错误，然后哪一行就自己注释掉</p>
+<h3 id=""></h3>
+<h2 id="10-解决虚拟机开机无法自动启动的问题">10. 解决虚拟机开机无法自动启动的问题</h2>
+<pre><code class="language-bash">sudo  vi /lib/systemd/system/libvirtd.service
+</code></pre>
+<p>在 Service里找到 ExecStart=/usr/sbin/libvirtd $LIBVIRTD_ARGS 这行</p>
+<pre><code>修改为改为：
+ExecStart=/bin/bash -c 'while [ ! -d /vol1/1000/vm ]; do sleep 5; done; /usr/sbin/libvirtd $LIBVIRTD_ARGS'
+</code></pre>
+<p>/vol1/1000/vm 为虚拟机的路径</p>
+<pre><code class="language-bash"># 重启
+sudo systemctl restart libvirtd
+
+</code></pre>
+<h2 id="8isotreos安装教程">8.isotreos安装教程</h2>
+<h3 id="81-进入虚拟机管理界面新增存储池">8.1 进入虚拟机管理界面新增存储池</h3>
+<p><img src="https://r2.l2r.top/img/1737609600592.png" alt="" loading="lazy"><br>
+存储池路径选择为istoreos存放的路径，别的不用改，新增后注意要激活</p>
+<h3 id="82-新增虚拟机">8.2 新增虚拟机</h3>
+<p>按照图上所述来就行<br>
+<img src="https://r2.l2r.top/img/1737609613371.png" alt="" loading="lazy"><br>
+存储：刚刚新增的存储池名称<br>
+卷：就是你的镜像</p>
+<h2 id="修改你的网络并启动">修改你的网络并启动</h2>
+<p>根据自己需求来不懂的就看官方的wiki<br>
+<img src="https://r2.l2r.top/img/1737609623272.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GitHub开源项目推荐/分享]]></title>
+        <id>https://blog.ctrlca.com/post/github-kai-yuan-xiang-mu-tui-jian-fen-xiang/</id>
+        <link href="https://blog.ctrlca.com/post/github-kai-yuan-xiang-mu-tui-jian-fen-xiang/">
+        </link>
+        <updated>2024-11-01T08:35:03.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="代理软件">代理软件</h2>
+<h3 id="clash">Clash</h3>
+<ul>
+<li><a href="https://github.com/juewuy/ShellCrash">ShellCrash</a><br>
+命令行版的Clash客户端，支持CDN下载/更新内核等</li>
+<li><a href="https://github.com/clash-verge-rev/clash-verge-rev">clash-verge-rev</a><br>
+CLash桌面版， 基于Clash Verge二开，支持Windows, MacOS, Linux</li>
+<li><a href="https://github.com/vernesong/OpenClash">OpenClash</a><br>
+openwrt 版本的Clash</li>
+<li><a href="https://github.com/MetaCubeX/ClashMetaForAndroid">ClashMetaForAndroid</a><br>
+安卓版Clash</li>
+</ul>
+<h3 id="其他协议">其他协议</h3>
+<ul>
+<li><a href="https://github.com/Safe3/firefly">firefly</a><br>
+WireGuard服务端软件</li>
+<li><a href="https://github.com/snail007/proxy_admin_free">proxy_admin_free</a><br>
+高性能全功能的http代理、https代理、socks5代理、内网穿透、内网穿透p2p、内网穿透代理、内网穿透反向代理、内网穿透服务器、Websocket代理、TCP代理、UDP代理、DNS代理、DNS加密代理，代理API认证，全能跨平台代理服务器。</li>
+</ul>
+<h2 id="网盘客户端">网盘客户端</h2>
+<ul>
+<li><a href="https://github.com/AlistGo/alist">Alist</a><br>
+🗂一个支持多存储的文件列表程序<br>
+延申版本：<br>
+<a href="https://github.com/jing332/AListFlutter">AListFlutter</a>:AList 安卓版本<br>
+<a href="https://github.com/Xmarmalade/alisthelper">alisthelper</a>: AList桌面版启动器<br>
+<a href="https://github.com/sbwml/luci-app-alist">luci-app-alist</a>: AList openwrt版<br>
+<a href="https://github.com/DDS-Derek/xiaoya-alist">xiaoya-alist</a>基于Alist的影音自动刮削软件</li>
+<li><a href="https://github.com/dr34m-cn/taosync">taosync</a><br>
+AList v3的自动化同步工具</li>
+</ul>
+<h2 id="服务器服务">服务器服务</h2>
+<ul>
+<li><a href="https://github.com/1Panel-dev/1Panel">1Panel</a><br>
+现代化、开源的 Linux 服务器运维管理面板，功能强大，小白必备</li>
+<li><a href="https://github.com/WisdomSky/Cloudflared-web">Cloudflared-web</a><br>
+Cloudflared内网穿透工具web界面版</li>
+<li><a href="https://github.com/gdy666/lucky">lucky</a> <a href="https://github.com/gdy666/luci-app-lucky">luci-app-lucky</a><br>
+openwrt版的Lucky,动态ddns ，stun内网穿透，反向代理等</li>
+<li><a href="https://github.com/whyour/qinglong">青龙面板</a><br>
+支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台</li>
+</ul>
+<h2 id="工具">工具</h2>
+<ul>
+<li><a href="https://github.com/zbezj/HEU_KMS_Activator">HEU_KMS_Activator</a><br>
+KMS激活工具，懂得都懂</li>
+<li><a href="https://github.com/tiny-craft/tiny-rdm">tiny-rdm</a><br>
+Redis桌面客户端 ，支持Mac、Windows和Linux</li>
+<li><a href="https://github.com/RROrg/rr">rr</a><br>
+黑群晖引导制作工具</li>
+<li><a href="https://github.com/Molunerfinn/PicGo">PicGo</a><br>
+图床工具</li>
+<li><a href="https://github.com/BornToBeRoot/NETworkManager">NETworkManager</a><br>
+超好用的网络工具，只支持win</li>
+<li><a href="https://github.com/Netskao/MacOS-Utils">MacOS-Utils</a><br>
+Netskao大佬的MacOS工具，微信防撤回</li>
+<li><a href="https://github.com/getgridea/gridea">gridea</a><br>
+一个静态博客写作客户端，支持同步到github</li>
+<li><a href="https://github.com/o0HalfLife0o/TVBoxOSC">TVBox</a><br>
+开源电视软件，需要配合源使用，功能十分强大</li>
+</ul>
+<h2 id="规则配置脚本">规则/配置/脚本</h2>
+<ul>
+<li><a href="https://github.com/Sitoi/dailycheckin">dailycheckin</a><br>
+基于「Docker」/「青龙面板」的每日签到脚本（支持多账号）签到列表: ｜爱奇艺｜全民K歌｜有道云   笔记｜百度贴吧｜Bilibili｜V2EX｜AcFun｜什么值得买｜阿里云盘｜i茅台申购｜小米运动｜百度搜   索资源平台｜恩山论坛｜奥拉星｜</li>
+<li><a href="https://github.com/ddgksf2013/ddgksf2013">墨鱼QX规则</a><br>
+QuantumultX的基础配置，直接导入使用即可</li>
+<li><a href="https://github.com/217heidai/adblockfilters">adblockfilters</a><br>
+适用于AdGuard的去广告合并规则</li>
+</ul>
+<h2 id="阅读">阅读</h2>
+<ul>
+<li><a href="https://github.com/gedoor/legado">legado</a><br>
+阅读3开源阅读器</li>
+<li><a href="https://github.com/hectorqin/reader">reader</a><br>
+阅读3服务器版</li>
+<li><a href="https://github.com/Modificator/E-Ink-Launcher">E-Ink-Launcher</a><br>
+墨水屏桌面软件，非常小巧</li>
+</ul>
+<h2 id="ios安卓玩机">IOS/安卓玩机</h2>
+<ul>
+<li><a href="https://github.com/opa334/TrollStore">TrollStore</a><br>
+大名鼎鼎的巨魔商店</li>
+<li><a href="https://github.com/Lessica/TrollSpeed">TrollSpeed</a><br>
+巨魔网速插件</li>
+<li><a href="https://github.com/Lessica/TrollFools">TrollFools</a><br>
+IOS巨魔商店插件，可以在不修改app的情况下注入插件</li>
+<li><a href="https://github.com/scavin/ws-scrcpy-docker">ws-scrcpy Docker版</a><br>
+网页adb连接控制手机</li>
+<li><a href="https://github.com/Genymobile/scrcpy">scrcpy</a><br>
+PC控制安卓设备</li>
+</ul>
+<h2 id="系统">系统</h2>
+<ul>
+<li><a href="https://github.com/ophub/amlogic-s9xxx-armbian">amlogic-s9xxx-armbian</a><br>
+大佬编译的armbian仓库，arm玩家的必备项目</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker安装Openwrt 配置旁路由]]></title>
+        <id>https://blog.ctrlca.com/post/docker-an-zhuang-openwrt-pei-zhi-pang-lu-you/</id>
+        <link href="https://blog.ctrlca.com/post/docker-an-zhuang-openwrt-pei-zhi-pang-lu-you/">
+        </link>
+        <updated>2024-11-01T00:46:21.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="介绍一个网站">介绍一个网站</h2>
+<p><a href="https://openwrt.ai">这是一个可以自编译openwrt的网站</a>，一会需要下载镜像包<br>
+并且，非付费的用户可以每天有一个免费的编译机会，大佬还自建了软件源....简直太香了（除了慢点）</p>
+<h2 id="1-打开网卡混杂模式">1. 打开网卡混杂模式</h2>
+<ul>
+<li>这里只介绍Ubuntu、debian 以及armbian系统的命令，其他系统自行百度</li>
+</ul>
+<pre><code>ip link set eth0 promisc on
+</code></pre>
+<p>eth0 指的是网卡名称</p>
+<h2 id="2-创建一个macvlan网络">2. 创建一个macvlan网络</h2>
+<ul>
+<li>创建macvlan网络,是为了实现独立mac地址，在网络层与其他物理机或者容器实现互联。</li>
+</ul>
+<pre><code># 查看这个网卡的网络信息
+ip addr show eth0
+# 假设eth0的IP是10.0.0.1/24，子网是10.0.0.0/24，网关为10.0.0.1 。那我们的命令为
+docker network create -d macvlan \
+  --subnet=10.0.0.0/24 \
+  --gateway=10.0.0.1 \
+  -o parent=eth0 \
+  my-macvlan-net
+</code></pre>
+<p>这里，--subnet是macvlan网络的子网，--gateway是网关（通常是子网内的第一个可用地址），-o parent=eth0指定了物理接口。</p>
+<h2 id="3下载-docker镜像包">3.下载 docker镜像包</h2>
+<p>打开上面这个网站<br>
+<img src="https://r2.l2r.top/img/1737609726124.png" alt="" loading="lazy"><br>
+鼠标滚轮把页面划到最下面，下载这个镜像包，到你想部署Openwrt的这台设备的上。<br>
+wget也好，下载上传了也好，随各位心意。<br>
+<img src="https://r2.l2r.top/img/1737609735883.png" alt="" loading="lazy"><br>
+如果你是arm设备或者是32位设备，请在固件搜索区域搜索<br>
+<img src="https://r2.l2r.top/img/1737609745662.png" alt="" loading="lazy"></p>
+<h2 id="4-导入镜像到docker中">4. 导入镜像到docker中</h2>
+<pre><code>docker import 下载的镜像包名称 docker中显示的镜像名称
+# 举例
+docker import openwrt-x86-64-generic-rootfs.tar.gz kiddin9_openwrt
+</code></pre>
+<h2 id="5-创建容器">5. 创建容器</h2>
+<pre><code>docker run –restart always –name openwrt kiddin9_openwrt -d –network openwrt –privileged /sbin/init
+</code></pre>
+<p>自己手动创建或者自己改命令</p>
+<h2 id="6-修改openwrt-ip">6. 修改openwrt IP</h2>
+<pre><code class="language-bash"># 进入容器
+docker exec -it openwrt sh
+
+# 修改openwrt后台登录IP 
+vi /etc/config/network
+
+# 重启网络
+/etc/init.d/network restart
+
+# 或者
+# 或者退出容器内部环境，在宿主机环境执行重启容器命令
+docker container restart openwrt
+</code></pre>
+<pre><code class="language-bash">sed -i ‘s/10.0.0.1/10.0.0.25/’ /etc/config/network &amp;&amp; /etc/init.d/network restart
+</code></pre>
+<p>直接网页输入IP，页面登录</p>
+<pre><code>#账号密码
+root/root
+</code></pre>
+<h2 id="7-配置位旁路由">7. 配置位旁路由</h2>
+<p><img src="https://r2.l2r.top/img/1737609762015.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737609776327.png" alt="" loading="lazy"></p>
+<h2 id="8-注意事项">8. 注意事项</h2>
+<ul>
+<li>首页这个联网状态别管他，软件包界面加载慢也别管他，那状态不对。<br>
+<img src="https://r2.l2r.top/img/1737609790167.png" alt="" loading="lazy"></li>
+<li>容器没有办法真正的重启，别问同为啥自己查</li>
+<li>尽量少装点插件，docker的性能不是很好，我只装了openclash用的，其余没装</li>
+</ul>
+<h2 id="一些废话">一些废话</h2>
+<p>首先说一下我为啥在dokcer中部署openwrt，而不是在openwrt中使用docker</p>
+<ul>
+<li>设备型号：sw799，配置: CPU RK3399 4+16<br>
+一块捡垃圾来的微信支付设备主板。没有太多的适配固件不多，最常用的还是大佬适配的Armbian固件，所以使用了Armbian固件。</li>
+<li>需求：我需要AdguardHome的DNS服务器 和一个openwrt做旁路由<br>
+问题分析：我有一个CPU型号为N6000的ikuai的软路由，以及一个性能还算是凑合的飞牛nas。一些基础的都已经满足了，我需要的是一个稳定的，性能还可以的，并且功耗小的设备。<br>
+Q：为什么不使用ikuai虚拟机部署？<br>
+A：我只想我的主路由保持稳定，而不是all in boom<br>
+Q：为什么不在飞牛里部署？<br>
+A：需求不一样，飞牛跑的都是业务类的服务，而像dns解析，旁路由我想给他单独出来</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[iKuai虚拟机安装iStoreOS旁路由]]></title>
+        <id>https://blog.ctrlca.com/post/ikuai-xu-ni-ji-an-zhuang-istoreos-pang-lu-you/</id>
+        <link href="https://blog.ctrlca.com/post/ikuai-xu-ni-ji-an-zhuang-istoreos-pang-lu-you/">
+        </link>
+        <updated>2024-10-25T05:15:33.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-新增虚拟机">1. 新增虚拟机</h2>
+<p>爱快后台-高级应用-虚拟机-添加<br>
+<img src="https://r2.l2r.top/img/1737609841973.png" alt="" loading="lazy"><br>
+这里着重讲讲设备管理<br>
+新增一个引导<br>
+<img src="https://r2.l2r.top/img/1737609852966.png" alt="" loading="lazy"></p>
+<h3 id="11-注意事项">1.1 注意事项：</h3>
+<pre><code>1. 再新增一个磁盘，如果不添加没磁盘用嗷。
+2. 网卡随意，不要开启efi，直接保存启动
+3. 没有新下载的安装包要解压解压解压！！！！！！！！！！！！！！！！
+</code></pre>
+<p>然后打开vnc，等待命令跑完以后回车<br>
+<img src="https://r2.l2r.top/img/1737609863051.png" alt="" loading="lazy"></p>
+<h2 id="2-输入命令修改lanip进入后台">2. 输入命令修改lanip进入后台</h2>
+<p>输入：</p>
+<pre><code>quickstart
+</code></pre>
+<p>我们选change lan ip</p>
+<p><img src="https://r2.l2r.top/img/1737609876385.png" alt="" loading="lazy"><br>
+输入ip和掩码就可</p>
+<h3 id="3-其他">3. 其他</h3>
+<p>iStoreOS初始用户名为：root 密码为：password</p>
+<p>也可参考这篇文章<br>
+https://www.bilibili.com/read/cv22717917/</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[安卓电视安装tvbox看影视直播tv]]></title>
+        <id>https://blog.ctrlca.com/post/an-zhuo-dian-shi-an-zhuang-tvbox-kan-ying-shi-zhi-bo-tv/</id>
+        <link href="https://blog.ctrlca.com/post/an-zhuo-dian-shi-an-zhuang-tvbox-kan-ying-shi-zhi-bo-tv/">
+        </link>
+        <updated>2024-10-23T09:40:26.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-项目地址">1. 项目地址</h2>
+<pre><code>https://github.com/o0HalfLife0o/TVBoxOSC
+</code></pre>
+<p>四个版本自己试一下哪个能安装</p>
+<h2 id="2-配置">2. 配置</h2>
+<p>打开设置<br>
+<img src="https://r2.l2r.top/img/1737609915104.png" alt="" loading="lazy"><br>
+配置项目地址，使用手机扫码输入第一个源就点确定就行<br>
+这里我们使用放牛娃的源</p>
+<pre><code>http://tvbox.xn--4kq62z5rby2qupq9ub.xyz/
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737609926726.png" alt="" loading="lazy"></figure>
+<h2 id="3-答疑">3. 答疑</h2>
+<h3 id="31-获取储存权限失败怎么办">3.1 获取储存权限失败怎么办</h3>
+<p>别管什么储存权限乱七八糟权限的，直接点确定！！！！！点完返回，会加载数据</p>
+<h3 id="32-一直在直播换台怎么办">3.2 一直在直播换台怎么办</h3>
+<p>进入首页以后左上方源信息点击会弹一个清除缓存<br>
+如果跳到了直播界面，疯狂换台一定要狂点返回，或者按菜单键退出直播，然后左上角清除缓存<br>
+之后再进入直播就正常了，点击确定/ok按键 查看直播信息</p>
+<h3 id="33-tvbox如何配置网盘">3.3 tvbox如何配置网盘</h3>
+<p>然后剩下的就是移动光标到首页，然后确定切换源找到网盘扫码界面，扫码登录网盘然后退出app重新进入就可以愉快的看电视了</p>
+<h3 id="34-tvbox怎么筛选">3.4 tvbox怎么筛选</h3>
+<ol>
+<li>大分类筛选：举例光标移动到电视剧再点确定会出现小分类（华语啊动漫啊等等）点击确定之后再点返回就可以筛选了</li>
+<li>搜索：点击搜索调出二维码直接手机扫码搜索，方便的一批</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用docker部署萤火虫快速部署WireGurad Server端]]></title>
+        <id>https://blog.ctrlca.com/post/shi-yong-docker-bu-shu-ying-huo-chong-kuai-su-bu-shu-wiregurad-server-duan/</id>
+        <link href="https://blog.ctrlca.com/post/shi-yong-docker-bu-shu-ying-huo-chong-kuai-su-bu-shu-wiregurad-server-duan/">
+        </link>
+        <updated>2024-10-17T07:58:40.000Z</updated>
+        <content type="html"><![CDATA[<p>使用WireGurad快速回家，访问家里的网络</p>
+<h2 id="1-docker部署">1. docker部署</h2>
+<p>项目地址</p>
+<pre><code>https://github.com/Safe3/firefly
+</code></pre>
+<p>docker-compose.yml</p>
+<pre><code>version: '3'
+services:
+  firefly:
+    image: &quot;uusec/firefly:latest&quot;
+    container_name: firefly-server
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    volumes:
+      - /lib/modules:/lib/modules
+      - /etc/firefly:/firefly/conf
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    restart: unless-stopped
+    environment:
+      #- TZ=Asia/Shanghai
+      #- FIREFLY_DEVICE=eth0
+      - FIREFLY_PASSWORD=firefly
+      #- FIREFLY_AUTO_SSL=false
+      #- FIREFLY_PORT=50121
+  
+</code></pre>
+<p>要注意的是network要改成除了host的任意一个网络<br>
+原因是因为wireguard只支持udp在openwrt和其他nas的默认情况下是tcp协议<br>
+这里我们要改成子网，并且把端口映射到宿主机协议改为udp<br>
+<img src="https://r2.l2r.top/img/1737609964447.png" alt="" loading="lazy"></p>
+<h2 id="修改配置文件">修改配置文件</h2>
+<p>部署完成以后修改 /etc/firefly 目录下的config.json配置文件<br>
+<img src="https://r2.l2r.top/img/1737609975567.png" alt="" loading="lazy"><br>
+① 你ddns出去的域名，注意如果你修改了端口号记得修改<br>
+② dns服务器，如果你本地搭建了dns服务器，你想使用的话那你自己改，这里我用了阿里的dns服务器<br>
+ok接下来启动firefly吧</p>
+<h5 id="注意别踩坑">注意别踩坑：</h5>
+<p>wg_device这个字段，如果你有两个以上的网卡，请确认你的流量出口是哪个网卡自行修改<br>
+服务端配置详解：</p>
+<pre><code>{
+ &quot;version&quot;: 4.3,              // 萤火虫当前版本
+ &quot;host&quot;: &quot;7.7.7.7&quot;,           // 萤火虫web管理后台ip或域名，默认为自动获取的公网ip
+ &quot;port&quot;: 50121,               // 萤火虫web管理后台端口
+ &quot;auto_ssl&quot;: false,           // 萤火虫web是否启用自动申请免费SSL证书并续期，启用前将web端口改为443并配置host为域名
+ &quot;password&quot;: &quot;firefly&quot;,       // 萤火虫web管理后台登录认证密码
+ &quot;lang&quot;: &quot;en&quot;,                // 萤火虫web管理后台多语言支持，中文请将en改为cn
+ &quot;ui_traffic_stats&quot;: true,    // 萤火虫web管理后台是否开启流量图特效
+ &quot;ui_chart_type&quot;: 2,          // 萤火虫web管理后台流量特效图类型
+ &quot;log_level&quot;: &quot;error&quot;,        // 萤火虫服务端日志记录等级
+ &quot;wg_private_key&quot;: &quot;YBw5KAo1vM2mz35GLhZB01ZNYWJYWdGZNQT1MebuCHk=&quot;,  // 萤火虫服务端 WireGuard 私钥
+ &quot;wg_device&quot;: &quot;eth0&quot;,                   // 萤火虫服务端 WireGuard 出入流量网卡名称
+ &quot;wg_port&quot;: 50120,                      // 萤火虫服务端 WireGuard UDP端口
+ &quot;wg_mtu&quot;: 1280,                        // 萤火虫服务端 WireGuard MTU值
+ &quot;wg_persistent_keepalive&quot;: 25,         // 萤火虫客户端存活包发送间隔时间
+ &quot;wg_address&quot;: &quot;198.18.0.1/15&quot;,         // 萤火虫客户端虚拟ip网段范围
+ &quot;wg_dns&quot;: &quot;1.1.1.1&quot;,                   // 萤火虫客户端dns配置
+ &quot;wg_allowed_ips&quot;: &quot;0.0.0.0/0, ::/0&quot;,   // 萤火虫客户端要转发流量到服务端的ip地址范围，默认所有流量
+ &quot;wg_proxy_address&quot;: &quot;:50122&quot;           // 萤火虫TCP协议中转监听地址，可防止UDP QoS限流
+}
+</code></pre>
+<h2 id="3一点点小思路">3.一点点小思路</h2>
+<p>使用ShellCrash劫持局域网流量实现WireGuard 使用坤厂来学术查询<br>
+看图吧看图<br>
+<img src="https://r2.l2r.top/img/1737609987801.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737609999682.png" alt="" loading="lazy"><br>
+<img src="https://r2.l2r.top/img/1737610008472.png" alt="" loading="lazy"><br>
+这样，你别的设备已经正常，而萤火虫可以学术查询<br>
+shellcrash 项目地址：</p>
+<pre><code>https://github.com/juewuy/ShellCrash
+</code></pre>
+]]></content>
+    </entry>
+</feed>

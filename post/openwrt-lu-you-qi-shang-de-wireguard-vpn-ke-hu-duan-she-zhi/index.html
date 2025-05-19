@@ -1,0 +1,301 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenWrt 路由器上的 WireGuard VPN 客户端设置 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OpenWrt 路由器上的 WireGuard VPN 客户端设置 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 在您的 OpenWrt 路由器上配置 WireGuard VPN 客户端
+1.1 安装 Wireguard 安装包
+
+将您的设备连接到 OpenWrt 路由器，并在浏览器地址栏中输入管理面板的 IP 地址。路由器的默认 IP 地址是 ..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OpenWrt 路由器上的 WireGuard VPN 客户端设置
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-09-27
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://tp.ctrlca.com/img/20240927103422.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="1-在您的-openwrt-路由器上配置-wireguard-vpn-客户端">1. 在您的 OpenWrt 路由器上配置 WireGuard VPN 客户端</h2>
+<h3 id="11-安装-wireguard-安装包">1.1 安装 Wireguard 安装包</h3>
+<ol>
+<li>将您的设备连接到 OpenWrt 路由器，并在浏览器地址栏中输入管理面板的 IP 地址。路由器的默认 IP 地址是 192.168.1.1。</li>
+<li>前往 System（系统）&gt; Software（程序）。</li>
+<li>点按 Update Lists（更新列表）并等待。向下滚动页面并点击 Dismiss（离开）。</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737611787041.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://r2.l2r.top/img/1737611796500.webp" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>在 Search（搜索）栏中粘贴 luci-i18n-wireguard-en，然后点击 Install（安装）。</li>
+</ol>
+<figure data-type="image" tabindex="3"><img src="https://r2.l2r.top/img/1737611806477.webp" alt="" loading="lazy"></figure>
+<ol start="5">
+<li>点击 Install（安装）。向下滚动页面并点击 Dismiss（离开）。</li>
+</ol>
+<figure data-type="image" tabindex="4"><img src="https://r2.l2r.top/img/1737611815140.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://r2.l2r.top/img/1737611822336.webp" alt="" loading="lazy"></figure>
+<ol start="6">
+<li>前往 Installed（已安装）选项卡，在搜索栏中输入 wireguard，然后检查下列安装包是否已安装成功：</li>
+</ol>
+<pre><code>wireguard-tools
+kmod-wireguard
+luci-app-wireguard
+luci-i18n-wireguard-en
+luci-proto-wireguard
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://r2.l2r.top/img/1737611831605.webp" alt="" loading="lazy"></figure>
+<ol start="7">
+<li>要应用更改，请转到 Status（状态）选项卡并重新启动路由器。</li>
+</ol>
+<h3 id="12-创建-wireguard-接口">1.2. 创建 WireGuard 接口</h3>
+<ol>
+<li>前往 Network（网络）选项卡 &gt; Interfaces（接口）&gt; Add New Interface（添加新接口）。</li>
+</ol>
+<figure data-type="image" tabindex="7"><img src="https://r2.l2r.top/img/1737611840113.webp" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>设置自定义名称（如 VPNUnlimited），然后选中 Wireguard 协议。点击 Create Interface（创建接口）。</li>
+</ol>
+<figure data-type="image" tabindex="8"><img src="https://r2.l2r.top/img/1737611848007.webp" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>选择 General Settings（常规设置），粘贴您之前生成的手动配置的详细信息：</li>
+</ol>
+<ul>
+<li><em>PrivateKey = 从您的</em> *用户主页 粘贴 PrivateKey*</li>
+<li>*ListenPort（监听端口） = 粘贴 ListenPort 的详细信息*</li>
+<li>*IP Addresses（IP 地址）= 粘贴 Address 信息并点击 +*</li>
+<li></li>
+</ul>
+<figure data-type="image" tabindex="9"><img src="https://r2.l2r.top/img/1737611857610.webp" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>前往 Peers（对等项）选项卡并添加以下信息：</li>
+</ol>
+<ul>
+<li>*PublicKey = 从 用户主页 粘贴 PublicKey*</li>
+<li>*PresharedKey（预共享密钥） = 粘贴 PresharedKey 详细信息*</li>
+<li>*AllowedIPs（允许的 IP）= 粘贴第一个 AllowedIP，按下 + 键，然后输入第二个 AllowedIP*</li>
+<li>*勾选 Route Allowed IPs（路由允许的 IP）*</li>
+<li>*Endpoint Host（端点主机）= 在冒号前添加 Endpoint 信息*</li>
+<li>*Endpoint Port（端点端口）= 在冒号后添加 Endpoint 信息*</li>
+<li>*Persistent Keep Alive（保持活动状态）= 从 用户主页 粘贴 PersistentKeepalive*</li>
+</ul>
+<p><img src="https://r2.l2r.top/img/1737615849162.webp" alt="" loading="lazy"><br>
+5. 在 WAN6 接口按下 Stop（停止）按钮。</p>
+<figure data-type="image" tabindex="10"><img src="https://r2.l2r.top/img/1737615916017.webp" alt="" loading="lazy"></figure>
+<ol start="6">
+<li>点击 Save &amp; Apply（保存和应用）。</li>
+</ol>
+<figure data-type="image" tabindex="11"><img src="https://r2.l2r.top/img/1737612474444.webp" alt="" loading="lazy"></figure>
+<h3 id="13-设置-firewall-zones防火墙域">1.3. 设置 Firewall zones（防火墙域）</h3>
+<ol>
+<li>导航至 Network（网络）&gt; Firewall Zone Settings（防火墙域设置），然后点击 Add（添加）。</li>
+</ol>
+<figure data-type="image" tabindex="12"><img src="https://r2.l2r.top/img/1737615886804.webp" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>在此窗口输入下列配置：</li>
+</ol>
+<ul>
+<li>Name（名称）- 设置任意名称（如 vpnunl）</li>
+<li>Input（输入）- Reject（拒绝）</li>
+<li>Output（输出）- Accept（接受）</li>
+<li>Forward（转发）- Reject（拒绝）</li>
+<li>Masquerading（伪装）- 勾选</li>
+<li>MSS clamping（MSS 夹持）- 勾选</li>
+<li>Covered networks（覆盖网络）- 选择之前创建的 VPN 通道接口（如 VPNUNLIMITED）</li>
+<li>Allow forward to destination zones（允许转发到目标区域）- Unspecified（不指定）</li>
+<li>Allow forward from source zones（允许从源区域转发）- lan（局域网）</li>
+</ul>
+<figure data-type="image" tabindex="13"><img src="https://r2.l2r.top/img/1737612569916.webp" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>点击 Save（保存）。</li>
+</ol>
+<figure data-type="image" tabindex="14"><img src="https://r2.l2r.top/img/1737615763027.webp" alt="" loading="lazy"></figure>
+<h3 id="14-添加静态-dns-服务器">1.4. 添加静态 DNS 服务器</h3>
+<ol>
+<li>前往 Interface（接口）选项卡 &gt; WAN &gt; 点击 Edit（编辑）&gt; 选择 Advanced Settings（高级设置）选项卡。 取消选中 Use DNS servers advertised by Peers（使用对等方通告的 DNS 服务器）选项，从 用户主页 粘贴 DNS 详细信息，然后按下 + 键。</li>
+<li>点击 Save（保存）。</li>
+</ol>
+<figure data-type="image" tabindex="15"><img src="https://r2.l2r.top/img/1737612594286.webp" alt="" loading="lazy"></figure>
+<p><img src="https://r2.l2r.top/img/1737612602903.webp" alt="" loading="lazy"><br>
+3. 点击 Save &amp; Apply（保存和应用）。</p>
+<p><em>注意：如果您遇到与 VPN 连接有关的任何问题，请重新启动路由器。要执行此操作，请前往 Status（状态）选项卡，然后单击 Reboot（重新启动）。</em></p>
+<figure data-type="image" tabindex="16"><img src="https://r2.l2r.top/img/1737612618443.webp" alt="" loading="lazy"></figure>
+<h3 id="15-添加-kill-switch可选项">1.5. 添加 Kill Switch（可选项）</h3>
+<ol>
+<li>导航至 Network（网络）&gt; Firewall（防火墙），然后在 LAN Firewall Zone（LAN 防火墙域）点击 Edit（编辑）。</li>
+</ol>
+<figure data-type="image" tabindex="17"><img src="https://r2.l2r.top/img/1737615701462.webp" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>在此窗口输入下列配置：</li>
+</ol>
+<figure data-type="image" tabindex="18"><img src="https://r2.l2r.top/img/1737612636223.webp" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>从“Allow forward to destination zones（允许转发到目标区域）”中移除“wan”。就这样！</li>
+</ol>
+<figure data-type="image" tabindex="19"><img src="https://r2.l2r.top/img/1737612645658.png" alt="" loading="lazy"></figure>
+<p>现在您拥有了一个通过 WireGuard VPN 协议运行的 VPN 连接。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%9C%A8%E6%82%A8%E7%9A%84-openwrt-%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AE-wireguard-vpn-%E5%AE%A2%E6%88%B7%E7%AB%AF">1. 在您的 OpenWrt 路由器上配置 WireGuard VPN 客户端</a>
+<ul>
+<li><a href="#11-%E5%AE%89%E8%A3%85-wireguard-%E5%AE%89%E8%A3%85%E5%8C%85">1.1 安装 Wireguard 安装包</a></li>
+<li><a href="#12-%E5%88%9B%E5%BB%BA-wireguard-%E6%8E%A5%E5%8F%A3">1.2. 创建 WireGuard 接口</a></li>
+<li><a href="#13-%E8%AE%BE%E7%BD%AE-firewall-zones%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%9F">1.3. 设置 Firewall zones（防火墙域）</a></li>
+<li><a href="#14-%E6%B7%BB%E5%8A%A0%E9%9D%99%E6%80%81-dns-%E6%9C%8D%E5%8A%A1%E5%99%A8">1.4. 添加静态 DNS 服务器</a></li>
+<li><a href="#15-%E6%B7%BB%E5%8A%A0-kill-switch%E5%8F%AF%E9%80%89%E9%A1%B9">1.5. 添加 Kill Switch（可选项）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/ji-chang-ding-yue-zhuan-huan-ben-di-hua/">
+              <h3 class="post-title">
+                机场订阅转换本地化
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

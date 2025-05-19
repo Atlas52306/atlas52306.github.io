@@ -1,0 +1,250 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Z-Library介绍以及利用青龙实现自动同步书籍 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Z-Library介绍以及利用青龙实现自动同步书籍 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. Z-Library介绍
+Z-Library是一个在线数字图书馆，完全免费不收取费用，不过可以赞助
+赞助可以获得高级账户，不过只有三十天
+其实就是开会员，详细的自己看吧...
+
+2. 如何白嫖下载次数呢
+按照正常需求，10次下载次数根本..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Z-Library介绍以及利用青龙实现自动同步书籍
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-10-11
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737611075536.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="1-z-library介绍">1. Z-Library介绍</h2>
+<p>Z-Library是一个在线数字图书馆，完全免费不收取费用，不过可以赞助<br>
+赞助可以获得高级账户，不过只有三十天<br>
+其实就是开会员，详细的自己看吧...<br>
+<img src="https://r2.l2r.top/img/1737611055932.png" alt="" loading="lazy"></p>
+<h2 id="2-如何白嫖下载次数呢">2. 如何白嫖下载次数呢</h2>
+<p>按照正常需求，10次下载次数根本用不完，但是！！但是！！我就是想都下载下来存起来（nas闲着也是闲着没事让他干点活）所以我的次数用超了,那如何解决这个问题：<br>
+首先，来分析一下Z-Library的官网一共有6中下载方式：</p>
+<ol>
+<li>直接下载: 下载速度慢</li>
+<li>发送到Google网盘： 没科技别想</li>
+<li>发送到tg： 这是没&quot;科技&quot;能想的嘛？</li>
+<li>发送到kindle ： 都2024年了</li>
+<li>发送到另一种电子阅读器：没用过，我也不知道咋用</li>
+<li>最后一种发送到邮箱</li>
+</ol>
+<p>现在看起来直接发送到电子阅读器里无疑是最方便的，但是嘛我都没有所以我选择发到邮箱<br>
+发送到邮箱以后存到nas的问题又令我头疼了<br>
+一开始我的方案是：<br>
+Z-Library =&gt;邮箱=&gt; 转发到谷歌邮箱 =&gt;自动化工具自动转存到GoogleDrive =&gt;GoogleDrive挂载到Alist（起飞了）=&gt;再通过Alist同步工具同步到阿里云盘=&gt;通过Alist挂载到文件管理里下载<br>
+是不是很麻烦！！但是我实现了<br>
+先说下我为啥不直接保存到GoogleDrive 因为我有的时候用安卓App，他只有发送到邮箱这一个选项</p>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737611043763.png" alt="" loading="lazy"></figure>
+<p>那怎么解决十次下载这个问题呢： 注册多个邮箱配置邮箱自动转发到一个邮箱，然后每次收到邮件以后就转发到这个收数据的邮箱，如果一个邮箱次数使用完以后接着换账户就ok了</p>
+<h2 id="3-如何自动下载邮箱附件呢这里我们用到了青龙">3. 如何自动下载邮箱附件呢，这里我们用到了青龙</h2>
+<p>大家都知道青龙可以跑京豆对吧，各种签到这签到那签到的，我们就使用青龙定时任务获取邮件进行同步<br>
+新建一个.py后缀的文件</p>
+<pre><code>from imbox import Imbox
+import datetime
+from urllib.parse import unquote
+
+
+# 连接到你的邮箱服务器（请替换为你的邮箱服务器信息）
+with Imbox('imap.xxx.com',
+           username='xxx@xxx.com',
+           password = 'xxxxx',
+           ssl=True) as imbox:
+
+    # 搜索包含'Z-Library主题的邮件 注意是包含！不是 等于
+    filtered_messages = imbox.messages(subject='Z-Library')
+
+    for uid, message in filtered_messages:
+        print(f&quot;邮件ID: {uid}&quot;)
+        print(f&quot;邮件主题: {message.subject}&quot;)
+        # 下载所有附件
+        for attachment in message.attachments:
+            filename = attachment.get('filename')
+            if filename[0:5] == 'utf-8' :
+                # 解码当前文件名称
+                filename = unquote(filename)
+                # 去除utf-8字符
+                filename = filename[7:len(filename)]
+            #打印当前文件名称        
+            print(datetime.datetime.now() ,&quot;获取到附件：&quot;, filename)
+            # 文件保存路径
+            file_path = f&quot;/ql/raidbooks/{filename}&quot;
+            
+            with open(file_path, &quot;wb&quot;) as fp:
+                # decode_header()         
+                # fileInfo = 
+                fp.write(attachment.get('content').read())
+                # 删除邮件
+                imbox.delete(uid)
+            print(f&quot;下载附件到: {file_path}&quot;)
+    # 断开
+   # imbox.logout()
+</code></pre>
+<p>注意： 如果你使用docker部署青龙，请给青龙挂载一个本地文件夹方便他上传<br>
+docker的青龙路径，请ssh下cd到这个文件夹pwd一下</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-z-library%E4%BB%8B%E7%BB%8D">1. Z-Library介绍</a></li>
+<li><a href="#2-%E5%A6%82%E4%BD%95%E7%99%BD%E5%AB%96%E4%B8%8B%E8%BD%BD%E6%AC%A1%E6%95%B0%E5%91%A2">2. 如何白嫖下载次数呢</a></li>
+<li><a href="#3-%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E9%82%AE%E7%AE%B1%E9%99%84%E4%BB%B6%E5%91%A2%E8%BF%99%E9%87%8C%E6%88%91%E4%BB%AC%E7%94%A8%E5%88%B0%E4%BA%86%E9%9D%92%E9%BE%99">3. 如何自动下载邮箱附件呢，这里我们用到了青龙</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/ji-yi-ci-stun-nei-wang-chuan-tou-bing-bang-ding-yu-ming/">
+              <h3 class="post-title">
+                记一次STUN内网穿透并&#34;绑定域名&#34;
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

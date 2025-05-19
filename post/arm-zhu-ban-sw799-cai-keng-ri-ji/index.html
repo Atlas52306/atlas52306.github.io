@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ARM主板-SW799踩坑日记 | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ARM主板-SW799踩坑日记 | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="ophub Armbian下载：
+https://github.com/ophub/amlogic-s9xxx-armbian/releases
+
+SW799_刷机maskrom短接点
+![](http://tp.ctrlca.com/im..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ARM主板-SW799踩坑日记
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-09-18
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737613029543.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h1 id="ophub-armbian下载">ophub Armbian下载：</h1>
+<p>https://github.com/ophub/amlogic-s9xxx-armbian/releases</p>
+<pre><code>
+SW799_刷机maskrom短接点
+![](http://tp.ctrlca.com/img/SW799_%E5%88%B7%E6%9C%BAmaskrom%E7%9F%AD%E6%8E%A5%E7%82%B9-20240403160204-d2fgoyc.jpg)``
+  ```url
+  # 本来打算不讲了算了讲一下把
+  1.使用数据线连接设备
+  2.图片上核心板短接后再上电进入maskrom模式
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737612991127.png" alt="" loading="lazy"></figure>
+<h3 id="11准备工作">1.1.准备工作</h3>
+<h4 id="111工具链接">1.1.1工具链接：</h4>
+<pre><code class="language-url">https://gitee.com/xiayang0521/rk3399/releases/
+https://github.com/xiayang0521/rk3399
+</code></pre>
+<h4 id="112-安装驱动">1.1.2 安装驱动</h4>
+<p>解压Rockchip_DriverAssitant_v****.zip</p>
+<p>点击DriverInstall.exe安装驱动</p>
+<figure data-type="image" tabindex="2"><img src="https://r2.l2r.top/img/1737612999660.png" alt="" loading="lazy"></figure>
+<h4 id="113-刷机包">1.1.3 刷机包:</h4>
+<pre><code class="language-url"># ARM
+https://github.com/ophub/amlogic-s9xxx-armbian
+# openwrt
+待补充
+# bin文件
+待补充
+</code></pre>
+<h4 id="114-核对openwrtarmbian镜像和boot文件">1.1.4 核对OpenWrt/ArmBian镜像和Boot文件</h4>
+<p>如下图所示</p>
+<figure data-type="image" tabindex="3"><img src="https://r2.l2r.top/img/1737613007716.png" alt="" loading="lazy"></figure>
+<p>注意OpenWrt/ArmBian镜像是img格式，gz、7z等格式是压缩包，请务必解压后刷img文件</p>
+<pre><code class="language-点击">点击 执行 按钮，随机开始刷入OpenWrt/Armbian系统。需要注意需要在maskrom模式下才能执行。
+如果擦除FLASH后没有自动重启进入MASKROM模式，请重新手动进入Maskrom模式)
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://r2.l2r.top/img/1737613020958.png" alt="" loading="lazy"></figure>
+<h4 id="115-刷机完成等待设备重启">1.1.5 刷机完成等待设备重启</h4>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#ophub-armbian%E4%B8%8B%E8%BD%BD">ophub Armbian下载：</a><br>
+*
+<ul>
+<li><a href="#11%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">1.1.准备工作</a>
+<ul>
+<li><a href="#111%E5%B7%A5%E5%85%B7%E9%93%BE%E6%8E%A5">1.1.1工具链接：</a></li>
+<li><a href="#112-%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8">1.1.2 安装驱动</a></li>
+<li><a href="#113-%E5%88%B7%E6%9C%BA%E5%8C%85">1.1.3 刷机包:</a></li>
+<li><a href="#114-%E6%A0%B8%E5%AF%B9openwrtarmbian%E9%95%9C%E5%83%8F%E5%92%8Cboot%E6%96%87%E4%BB%B6">1.1.4 核对OpenWrt/ArmBian镜像和Boot文件</a></li>
+<li><a href="#115-%E5%88%B7%E6%9C%BA%E5%AE%8C%E6%88%90%E7%AD%89%E5%BE%85%E8%AE%BE%E5%A4%87%E9%87%8D%E5%90%AF">1.1.5 刷机完成等待设备重启</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

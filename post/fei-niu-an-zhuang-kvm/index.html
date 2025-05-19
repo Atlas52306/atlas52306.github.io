@@ -1,0 +1,268 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>飞牛安装kvm | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="飞牛安装kvm | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 安装依赖
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+
+2. 安装cockpit 以及虚拟机管理软件
+. /etc/os-r..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              飞牛安装kvm
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-11-20
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737616028980.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h2 id="1-安装依赖">1. 安装依赖</h2>
+<pre><code class="language-bash">sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+</code></pre>
+<h2 id="2-安装cockpit-以及虚拟机管理软件">2. 安装cockpit 以及虚拟机管理软件</h2>
+<pre><code class="language-bash">. /etc/os-release
+sudo apt install -t ${VERSION_CODENAME}-backports cockpit cockpit-machines
+</code></pre>
+<h2 id="3-启动cockpit">3. 启动cockpit</h2>
+<pre><code class="language-bash">sudo systemctl start cockpit
+</code></pre>
+<h2 id="4-访问cockpit">4. 访问cockpit</h2>
+<pre><code class="language-url">https://ip:9090
+</code></pre>
+<h2 id="5-cockpit官网指南">5. cockpit官网指南</h2>
+<pre><code class="language-url">https://cockpit-project.org/guide/latest/guide
+</code></pre>
+<h2 id="6-关闭apparmor对libvirt安全限制">6. 关闭Apparmor对Libvirt安全限制</h2>
+<p>Libvirt在执行和访问系统文件的时候会被Apparmor阻挡，因此为了确保Libvirt始终有必须的权限，必须禁用apparmor：</p>
+<pre><code class="language-bash">ln -s /etc/apparmor.d/usr.sbin.libvirtd  /etc/apparmor.d/disable/
+apparmor_parser -R  /etc/apparmor.d/usr.sbin.libvirtd
+</code></pre>
+<p>执行完成后重启设备</p>
+<h2 id="7-账号密码">7. 账号密码</h2>
+<pre><code>飞牛的账号密码
+</code></pre>
+<h2 id="8-再cockpit操作界面上创建bridge网络使虚拟机通过bridge0桥接到物理网络">8. 再cockpit操作界面上创建Bridge网络，使虚拟机通过bridge0桥接到物理网络</h2>
+<p>略</p>
+<h2 id="9-解决虚拟机网桥不通的问题">9. 解决虚拟机网桥不通的问题</h2>
+<h3 id="91-添加规则">9.1 添加规则</h3>
+<pre><code class="language-bash">nft add rule ip filter FORWARD iifname &quot;bridge0&quot; accept
+nft add rule ip filter FORWARD oifname &quot;bridge0&quot; accept
+</code></pre>
+<h3 id="92-保存规则">9.2 保存规则</h3>
+<pre><code class="language-bash">sudo nft list ruleset &gt; /etc/nftables.conf
+</code></pre>
+<h3 id="93-重启-检查错误-设置开机启动">9.3 重启、检查错误、设置开机启动</h3>
+<pre><code class="language-bash"># 设置开机启动
+sudo systemctl enable nftables
+# 重启
+sudo systemctl restart nftables
+</code></pre>
+<p>这里说到错误，如果你装了其他的shell代理软件保存规则时可能会报错<br>
+去cockpit里看错误，然后哪一行就自己注释掉</p>
+<h3 id=""></h3>
+<h2 id="10-解决虚拟机开机无法自动启动的问题">10. 解决虚拟机开机无法自动启动的问题</h2>
+<pre><code class="language-bash">sudo  vi /lib/systemd/system/libvirtd.service
+</code></pre>
+<p>在 Service里找到 ExecStart=/usr/sbin/libvirtd $LIBVIRTD_ARGS 这行</p>
+<pre><code>修改为改为：
+ExecStart=/bin/bash -c 'while [ ! -d /vol1/1000/vm ]; do sleep 5; done; /usr/sbin/libvirtd $LIBVIRTD_ARGS'
+</code></pre>
+<p>/vol1/1000/vm 为虚拟机的路径</p>
+<pre><code class="language-bash"># 重启
+sudo systemctl restart libvirtd
+
+</code></pre>
+<h2 id="8isotreos安装教程">8.isotreos安装教程</h2>
+<h3 id="81-进入虚拟机管理界面新增存储池">8.1 进入虚拟机管理界面新增存储池</h3>
+<p><img src="https://r2.l2r.top/img/1737609600592.png" alt="" loading="lazy"><br>
+存储池路径选择为istoreos存放的路径，别的不用改，新增后注意要激活</p>
+<h3 id="82-新增虚拟机">8.2 新增虚拟机</h3>
+<p>按照图上所述来就行<br>
+<img src="https://r2.l2r.top/img/1737609613371.png" alt="" loading="lazy"><br>
+存储：刚刚新增的存储池名称<br>
+卷：就是你的镜像</p>
+<h2 id="修改你的网络并启动">修改你的网络并启动</h2>
+<p>根据自己需求来不懂的就看官方的wiki<br>
+<img src="https://r2.l2r.top/img/1737609623272.png" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96">1. 安装依赖</a></li>
+<li><a href="#2-%E5%AE%89%E8%A3%85cockpit-%E4%BB%A5%E5%8F%8A%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AE%A1%E7%90%86%E8%BD%AF%E4%BB%B6">2. 安装cockpit 以及虚拟机管理软件</a></li>
+<li><a href="#3-%E5%90%AF%E5%8A%A8cockpit">3. 启动cockpit</a></li>
+<li><a href="#4-%E8%AE%BF%E9%97%AEcockpit">4. 访问cockpit</a></li>
+<li><a href="#5-cockpit%E5%AE%98%E7%BD%91%E6%8C%87%E5%8D%97">5. cockpit官网指南</a></li>
+<li><a href="#6-%E5%85%B3%E9%97%ADapparmor%E5%AF%B9libvirt%E5%AE%89%E5%85%A8%E9%99%90%E5%88%B6">6. 关闭Apparmor对Libvirt安全限制</a></li>
+<li><a href="#7-%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81">7. 账号密码</a></li>
+<li><a href="#8-%E5%86%8Dcockpit%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2%E4%B8%8A%E5%88%9B%E5%BB%BAbridge%E7%BD%91%E7%BB%9C%E4%BD%BF%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%80%9A%E8%BF%87bridge0%E6%A1%A5%E6%8E%A5%E5%88%B0%E7%89%A9%E7%90%86%E7%BD%91%E7%BB%9C">8. 再cockpit操作界面上创建Bridge网络，使虚拟机通过bridge0桥接到物理网络</a></li>
+<li><a href="#9-%E8%A7%A3%E5%86%B3%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E6%A1%A5%E4%B8%8D%E9%80%9A%E7%9A%84%E9%97%AE%E9%A2%98">9. 解决虚拟机网桥不通的问题</a>
+<ul>
+<li><a href="#91-%E6%B7%BB%E5%8A%A0%E8%A7%84%E5%88%99">9.1 添加规则</a></li>
+<li><a href="#92-%E4%BF%9D%E5%AD%98%E8%A7%84%E5%88%99">9.2 保存规则</a></li>
+<li><a href="#93-%E9%87%8D%E5%90%AF-%E6%A3%80%E6%9F%A5%E9%94%99%E8%AF%AF-%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">9.3 重启、检查错误、设置开机启动</a></li>
+<li></li>
+</ul>
+</li>
+<li><a href="#10-%E8%A7%A3%E5%86%B3%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%80%E6%9C%BA%E6%97%A0%E6%B3%95%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98">10. 解决虚拟机开机无法自动启动的问题</a></li>
+<li><a href="#8isotreos%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B">8.isotreos安装教程</a>
+<ul>
+<li><a href="#81-%E8%BF%9B%E5%85%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E6%96%B0%E5%A2%9E%E5%AD%98%E5%82%A8%E6%B1%A0">8.1 进入虚拟机管理界面新增存储池</a></li>
+<li><a href="#82-%E6%96%B0%E5%A2%9E%E8%99%9A%E6%8B%9F%E6%9C%BA">8.2 新增虚拟机</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E4%BD%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B9%B6%E5%90%AF%E5%8A%A8">修改你的网络并启动</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/github-kai-yuan-xiang-mu-tui-jian-fen-xiang/">
+              <h3 class="post-title">
+                GitHub开源项目推荐/分享
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

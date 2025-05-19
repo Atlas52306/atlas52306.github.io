@@ -1,0 +1,300 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>记一次STUN内网穿透并&#34;绑定域名&#34; | Atlas&#39;s blog</title>
+<link rel="shortcut icon" href="https://blog.ctrlca.com/favicon.ico?v=1747641216952">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ctrlca.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="记一次STUN内网穿透并&#34;绑定域名&#34; | Atlas&#39;s blog - Atom Feed" href="https://blog.ctrlca.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="警告⚠： 本文需要一定的知识储备来处理过程中的异常信息 ，如果你没有那请你自己按照我的步骤一点一点来
+啥原理自行百度，我这里只讲以下如何使用
+1. 工具
+Lucky :
+
+用于STUN内网穿透
+cloudflare:
+
+用于绑定域名重定向
+..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ctrlca.com">
+  <img class="avatar" src="https://blog.ctrlca.com/images/avatar.png?v=1747641216952" alt="">
+  </a>
+  <h1 class="site-title">
+    Atlas&#39;s blog
+  </h1>
+  <p class="site-description">
+    有梦就要去追,待会儿醒了，就不容易再睡着了
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              记一次STUN内网穿透并&#34;绑定域名&#34;
+            </h2>
+            <div class="post-info">
+              <span>
+                2024-10-09
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://r2.l2r.top/img/1737611327410.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>警告⚠： 本文需要一定的知识储备来处理过程中的异常信息 ，如果你没有那请你自己按照我的步骤一点一点来<br>
+啥原理自行百度，我这里只讲以下如何使用</p>
+<h2 id="1-工具">1. 工具</h2>
+<p><a href="https://lucky666.cn/">Lucky</a> :<br>
+<img src="https://r2.l2r.top/img/1737611105174.png" alt="" loading="lazy"><br>
+用于STUN内网穿透<br>
+<a href="cloudflare.com">cloudflare</a>:<br>
+<img src="https://r2.l2r.top/img/1737611113082.png" alt="" loading="lazy"><br>
+用于绑定域名重定向</p>
+<h2 id="2-配置stun内网穿透">2. 配置STUN内网穿透</h2>
+<h3 id="21-设置内网穿透">2.1 设置内网穿透</h3>
+<p>咋安装不解释了，官网有<br>
+<img src="https://r2.l2r.top/img/1737611123018.png" alt="" loading="lazy"><br>
+如上图所示新增一个stun内网穿透，啥原理自行百度，我这里只讲以下如何使用<br>
+穿透通道本地端口: 建议还是大于10240<br>
+目的地址，目的端口：简单说就是你要映射到外网的服务ip+端口号比如我要映射alist 如图所示，也就是源地址源端口</p>
+<h3 id="22-端口映射到你的外网">2.2 端口映射到你的外网</h3>
+<p>这里建议手动映射哈，我这里是爱快，别的路由器请看路由器官方文档来配置，openwrt同理<br>
+<img src="https://r2.l2r.top/img/1737611131412.png" alt="" loading="lazy"></p>
+<h2 id="3-配置cloudflare来进行重定向">3.  配置cloudflare来进行重定向</h2>
+<h3 id="31-添加dns记录">3.1 添加dns记录</h3>
+<p>首先登录，然后点进去，根据图操作<br>
+<img src="https://r2.l2r.top/img/1737611141755.png" alt="" loading="lazy"><br>
+dns=&gt;记录<br>
+<img src="https://r2.l2r.top/img/1737611152328.png" alt="" loading="lazy"><br>
+点击新增一条，假如说我要映射alist，我给二级域名就叫alist 那 名称就填写alist<br>
+IPv4 地址随便填因为我们只需要它跳转<br>
+<img src="https://r2.l2r.top/img/1737611163027.png" alt="" loading="lazy"><br>
+添加好了就是上边画框的样子，注意要开代理要开代理要开代理</p>
+<h3 id="32-配置307重定向规则">3.2 配置307重定向规则</h3>
+<p>规则=》 重定向规则=》 创建规则<br>
+<img src="https://r2.l2r.top/img/1737611174410.png" alt="" loading="lazy"><br>
+下拉选择自定义</p>
+<pre><code># 表达式
+concat(&quot;http://ip+port&quot;, http.request.uri.path)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://r2.l2r.top/img/1737611186834.png" alt="" loading="lazy"></figure>
+<h3 id="33-获取-cloudflare-请求参数">3.3 获取 cloudflare 请求参数</h3>
+<p>本操作主要是为了通过lucky自动调接口更新cloudflare重定向的方法</p>
+<p>点击保存，然后再点编辑按 F12 或者鼠标右键检查 打开控制台<br>
+选择网络或者network<br>
+<img src="https://r2.l2r.top/img/1737611196490.png" alt="" loading="lazy"><br>
+然后再点击保存会出现一长串字符串，点击<br>
+<img src="https://r2.l2r.top/img/1737611205969.png" alt="" loading="lazy"><br>
+复制请求网址这个url<br>
+<img src="https://r2.l2r.top/img/1737611215604.png" alt="" loading="lazy"></p>
+<pre><code># 这网址的url格式为
+https://dash.cloudflare.com/api/v4/zones/区域id/rulesets/规则集id/rules/规则id  
+# 我们要转换为
+https://api.cloudflare.com/client/v4/zones/区域id/rulesets/规则集id/rules/规则id 
+</code></pre>
+<p>也就是说我们从把v4前面的连接换成 https://api.cloudflare.com/client/ 就可以了</p>
+<pre><code>https://api.cloudflare.com/client/
+</code></pre>
+<p>以上是获取了我们请求的url，我们还需要请求参数<br>
+<img src="https://r2.l2r.top/img/1737611230266.png" alt="" loading="lazy"><br>
+复制出来然后删除 version  和 last_updated<br>
+把 target_url 下的参数名称更新为 expression<br>
+格式：</p>
+<pre><code>{
+    &quot;action&quot;: &quot;redirect&quot;,
+    &quot;action_parameters&quot;: {
+        &quot;from_value&quot;: {
+            &quot;preserve_query_string&quot;: true,
+            &quot;status_code&quot;: 307,
+            &quot;target_url&quot;: {
+                &quot;expression&quot;: &quot;concat(\&quot;http://#{ipAddr}\&quot;, http.request.uri.path)&quot;
+            }
+        }
+    },
+    &quot;description&quot;: &quot;alist（这是是名称，别照着我的改）&quot;,
+    &quot;enabled&quot;: true,
+    &quot;expression&quot;: &quot;(http.host eq \&quot;atlas.xxx.com\&quot;)&quot;,
+    &quot;id&quot;: &quot;xxxxxxxxxxxxxxxxxxxxx&quot;,
+    &quot;ref&quot;: &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;
+}
+</code></pre>
+<p>拷贝出来上边示例数据改改id ref 其他和示例保持一样就ok<br>
+万事俱备只欠东风，接下来我们需要一个Authorization（密匙，调用Api必备参数）</p>
+<p>点击我的资料<br>
+<img src="https://r2.l2r.top/img/1737611243422.png" alt="" loading="lazy"><br>
+点击API令牌 =》创建 =》 创建自定义令牌<br>
+<img src="https://r2.l2r.top/img/1737611259403.png" alt="" loading="lazy"></p>
+<p>画框的填下，剩下的默认<br>
+<img src="https://r2.l2r.top/img/1737611269136.png" alt="" loading="lazy"><br>
+这样就得到了Authorization注意保存，画框的参数 双引号里边的参数拷贝出来<br>
+<img src="https://r2.l2r.top/img/1737611278244.png" alt="" loading="lazy"></p>
+<p>这样我们得到了三个数据：</p>
+<ol>
+<li>请求地址url</li>
+<li>请求头 Authorization 和 Content-Type</li>
+<li>请求的json数据</li>
+</ol>
+<h2 id="4-配置-webhook-更新重定向">4. 配置 WebHook 更新重定向</h2>
+<p>点击编辑<br>
+<img src="https://r2.l2r.top/img/1737611287438.png" alt="" loading="lazy"><br>
+然后按照上边得到的三个数据按照123填写入对应的框里<br>
+<img src="https://r2.l2r.top/img/1737611299648.png" alt="" loading="lazy"><br>
+然后点击手动测试，最后 接口调用成功包含的字符串 填上</p>
+<pre><code>&quot;success&quot;: true
+</code></pre>
+<p><img src="https://r2.l2r.top/img/1737611313853.png" alt="" loading="lazy"><br>
+ok完事</p>
+<p>参考文章：https://zhuanlan.zhihu.com/p/668448423</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%B7%A5%E5%85%B7">1. 工具</a></li>
+<li><a href="#2-%E9%85%8D%E7%BD%AEstun%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F">2. 配置STUN内网穿透</a>
+<ul>
+<li><a href="#21-%E8%AE%BE%E7%BD%AE%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F">2.1 设置内网穿透</a></li>
+<li><a href="#22-%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E5%88%B0%E4%BD%A0%E7%9A%84%E5%A4%96%E7%BD%91">2.2 端口映射到你的外网</a></li>
+</ul>
+</li>
+<li><a href="#3-%E9%85%8D%E7%BD%AEcloudflare%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%87%8D%E5%AE%9A%E5%90%91">3.  配置cloudflare来进行重定向</a>
+<ul>
+<li><a href="#31-%E6%B7%BB%E5%8A%A0dns%E8%AE%B0%E5%BD%95">3.1 添加dns记录</a></li>
+<li><a href="#32-%E9%85%8D%E7%BD%AE307%E9%87%8D%E5%AE%9A%E5%90%91%E8%A7%84%E5%88%99">3.2 配置307重定向规则</a></li>
+<li><a href="#33-%E8%8E%B7%E5%8F%96-cloudflare-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0">3.3 获取 cloudflare 请求参数</a></li>
+</ul>
+</li>
+<li><a href="#4-%E9%85%8D%E7%BD%AE-webhook-%E6%9B%B4%E6%96%B0%E9%87%8D%E5%AE%9A%E5%90%91">4. 配置 WebHook 更新重定向</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ctrlca.com/post/fnos-de-yi-xie-shi-yong-zhi-nan/">
+              <h3 class="post-title">
+                Fnos的一些使用指南
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  鲁ICP备2022008728号
+  <a class="rss" href="https://blog.ctrlca.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
